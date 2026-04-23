@@ -12,18 +12,25 @@ SERVICE_ACCOUNT_FILE = "service_account.json"
 GSHEET = {
     # Tracker utama (tempat dump semua data performance)
     "tracker": {
-        "url": "https://docs.google.com/spreadsheets/d/10jwwERVKLvdrk7tkmqVXeZHGp3Q1lV_2IjFsc6fXQhQ/edit?gid=911977561#gid=911977561",
-        "sheet_id": "10jwwERVKLvdrk7tkmqVXeZHGp3Q1lV_2IjFsc6fXQhQ",  # ambil dari URL
+        "url": "https://docs.google.com/spreadsheets/d/1URg6lx6L8jNqxfOL0-k3VSkFECN2hnXOOwCD7OnlvJo/edit?gid=0#gid=0",
+        "sheet_id": "1URg6lx6L8jNqxfOL0-k3VSkFECN2hnXOOwCD7OnlvJo",  # ambil dari URL
         "tabs": {
-            "raw_data_all":  "Raw Data [All]",
+            "raw_data_otif":  "Raw Data [OTIF]",
+            "raw_data_inter_cost": "Raw Data [Integrity & Cost]",
             "raw_data_cost": "Raw Data [Cost]",
-            "recipients": "recipients",
+            "raw_data_assign": "Raw Data [Assignment & Korlap]",
+            "raw_data_volume": "Raw Data Volume",
+            "staff_list": "Staff List",
+            "recipients":"recipients",
             "master_tracker_by_hub": "Master Tracker by Hub",
         },
         # Range yang di-clear saat Day 1 (sesuaikan)
         "clear_ranges": {
-            "raw_data_all": ["C4:I", "P4:V", "AC4:AI","AP4:AR","AY4:BA","BH4:BJ","BO4:BT"],
-            "raw_data_cost": ["B3:K"]
+            "raw_data_otif":  ["C4:J","O4:X","AC4:AH","AL4:AQ","AV4:AZ","BD4:BG","BL4:BO","BV4:CC","CH4:CK","CP4:CS","CX4:DA","DF4:DI"],
+            "raw_data_inter_cost": ["A4:D","I4:N","R4:W","AA4:AF"],
+            "raw_data_cost": ["B3:K","L3:T","V3:AF"],
+            "raw_data_assign": ["A4:E","G4:K","M4:R","V4:Y","AE4:AF"],
+            "raw_data_volume": ["A3:D"],
         },
     },
     
