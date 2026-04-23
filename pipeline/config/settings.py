@@ -118,36 +118,36 @@ GSHEET = {
     },
 
     # Gsheet DWS dari tim Sort
-    "dws": {
-        "url": "https://docs.google.com/spreadsheets/d/1wm7fyvG_AMlK8U2gCBKDr0_Hb_17fFKW21373vjf2xM/edit?gid=0#gid=0",
-        "sheet_id": "1wm7fyvG_AMlK8U2gCBKDr0_Hb_17fFKW21373vjf2xM",
+    "param_metabase": {
+        "url": "https://docs.google.com/spreadsheets/d/1rPlBaf-iB3AGC7gpkUxMnhqAfoKzMiw2g8jHIFNspKU/edit?gid=0#gid=0",
+        "sheet_id": "1rPlBaf-iB3AGC7gpkUxMnhqAfoKzMiw2g8jHIFNspKU",
         "tabs": {
-            "main": "Pivot", # sesuaikan nama tab
-        }
+            "param_assignment": "Assignment",
+            "param_poh": "POH",
+            "param_poh_type_shipper": "POH type shipper",
+            "param_cutoff": "Cutoff",
+            "param_target": "Target",
+            "param_whitelist_hub_itv": "Whitelist Hub ITV",
+            "param_exclude_address": "Exclude Address",
+            "param_saleschannel_rsvn": "Saleschannel RSVN",
+            "param_list_mp": "List MP",
+            "param_driver_type": "Driver Type"
+}
     },
 
     # Gsheet CPP dari tim PSP
     "cpp": {
-        "url": "https://docs.google.com/spreadsheets/d/155VQIcpKGH9Lbd3XUOWbzCxXUTFj8l8tMnU6t1NXitw/edit?gid=0#gid=0",
-        "sheet_id": "155VQIcpKGH9Lbd3XUOWbzCxXUTFj8l8tMnU6t1NXitw",
+        "url": "https://docs.google.com/spreadsheets/d/1J5QDngNrk1sRGblcGDq3PYzJgF8V5Uv8nwWpC32F4fM/edit?gid=361943273#gid=361943273",
+        "sheet_id": "1J5QDngNrk1sRGblcGDq3PYzJgF8V5Uv8nwWpC32F4fM",
         "tabs": {
             "main": "USE THIS", # sesuaikan nama tab
         }
     },
 
-    # Gsheet staff list dari SORT
-    "staff_list": {
-        "url": "https://docs.google.com/spreadsheets/d/1s4BQ2TJYxxY-BttqgHvB185ONZlQ36pc0Bkz5NooSTU/edit?gid=664145533#gid=664145533",
-        "sheet_id": "1s4BQ2TJYxxY-BttqgHvB185ONZlQ36pc0Bkz5NooSTU",
-        "tabs": {
-            "main": "USE THIS",
-        },
-    },
-
     # Gsheet Converter (data ke rupiah)
     "converter": {
-        "url": "https://docs.google.com/spreadsheets/d/1Sn2HisZcT81duWuWtKpVx_E_8192XeFIwtXrrDoSpGQ/edit?gid=0#gid=0",
-        "sheet_id": "1Sn2HisZcT81duWuWtKpVx_E_8192XeFIwtXrrDoSpGQ",
+        "url": "https://docs.google.com/spreadsheets/d/1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c/edit?gid=1216663898#gid=1216663898",
+        "sheet_id": "1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c",
         "tabs": {
             "master_tracker_by_hub": "Master Tracker by Hub",      # sesuaikan nama tab
             "staff_list":   "Staff List",  # sesuaikan nama tab
@@ -155,6 +155,16 @@ GSHEET = {
     },
 
     # Gsheet config — tempat kamu simpen Metabase token
+    "config": {
+        "sheet_id": "1RJK6GFPVrourpdF91GQ1DWuxBBn2a9_SndoyraXckZ4",
+        "tabs": {
+            "main": "App Password & API Keys",  # nama tab tempat token disimpen
+        },
+        "token_cell": "B2",  # cell tempat token Metabase
+    },
+}
+
+     # Gsheet config — tempat kamu simpen Metabase token
     "config": {
         "sheet_id": "1RJK6GFPVrourpdF91GQ1DWuxBBn2a9_SndoyraXckZ4",
         "tabs": {
