@@ -194,45 +194,41 @@ GSHEET = {
 
 # ── Metabase ─────────────────────────────────────────────────
 METABASE_CONFIG = {
-    "poa": {
-        "poa_iv_1": {
-            "url": "https://metabase.ninjavan.co/api/card/122270/query/json",
-            "report_type": "poa",
-            "common_params_template": [
-                {
-                    "id": "e6c527e6-8587-41ef-ba1e-223fadbca52a",
-                    "type": "date/single",
-                    "value_key": "start_date",
-                    "target": ["variable", ["template-tag", "start_date"]],
-                },
-                {
-                    "id": "e33b0e69-95c3-4fc3-9e08-2bce46b52ebe",
-                    "type": "date/single",
-                    "value_key": "end_date",
-                    "target": ["variable", ["template-tag", "end_date"]],
-                },
-                {
-                    "id": "5cfead49-71f9-45f9-86b8-d52079f5c4dd",
-                    "type": "category",
-                    "value": ["month"],
-                    "target": ["variable", ["template-tag", "aggr"]],
-                },
-                {
-                    "id": "74ebbf84-d66c-49c6-9d30-c1f260297ed4",
-                    "type": "string/=",
-                    "value": [
-                        "BDO-BDO", "CBN-CBN", "KNO-KNO", "PDG-PDG", "PKU-PKU",
-                        "PLM-PLM", "SOC-SOC", "SRG-SRG", "SUB-SUB", "TKG-TKG", "MAC-MAC"
-                    ],
-                    "target": ["dimension", ["template-tag", "crossdock_orig_hub"]],
-                },
-                {
-                    "id": "bbb8cd83-b7bd-4ce2-8d44-74c0f6e98704",
-                    "type": "number/=",
-                    "value": ["120"],
-                    "target": ["variable", ["template-tag", "Parameter"]],
-                },
-            ],
+    "pu_poh": {
+        "pu_poh": {
+            "url": "https://metabase.ninjavan.co/api/card/122262/query/json",
+            "report_type": "pu_poh",
+            "b2b_cc_params_template": [
+        {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value": "start_date", "target":["variable",["template-tag","START_DATE"]]},
+        {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+        {"id": "23beaf4a-c3c8-d8a9-ce5f-2a7faa597c93", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+        {"id": "9772d017-4fd1-4cc9-91c5-d791decef1ad", "type": "number/=", "value": [0], "target": ["variable", ["template-tag", "is_mitra_poh"]]},
+        {"id": "ce341566-e95e-4014-8c29-460b4aad24bd", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+        {"id": "bf15106e-d476-4d2e-914d-d9f1795b4423", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+        # {"id": "17cf0713-51d1-442f-9c39-1b58bdb0cb48", "type": "string/=", "value": key_shipper_list, "target": ["dimension", ["template-tag", "sf_parent_acc_id_coalesce"]]},
+
+        {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value": poh_value[0], "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
+        {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value": poh_value[1], "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
+        {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value": poh_value[2], "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
+        {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value": poh_value[3], "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
+
+        {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value": poh_value[4], "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
+        {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value": poh_value[5], "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
+        {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value": poh_value[6], "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
+        {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value": poh_value[7], "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
+
+        {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value": poh_value[8], "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
+        {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value": poh_value[9], "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
+        {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value": poh_value[10], "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
+        {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value": poh_value[11], "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
+
+        {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value": poh_value[12], "target": ["variable", ["template-tag", "Grace_Period_1"]]},
+        {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value": poh_value[13], "target": ["variable", ["template-tag", "Grace_Period_2"]]},
+        {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value": poh_value[14], "target": ["variable", ["template-tag", "Grace_Period_3"]]},
+        {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value": poh_value[15], "target": ["variable", ["template-tag", "Grace_Period_4"]]},
+
+        {"id": "9e5f5b73-61b4-4a12-bc21-9c0b6fae190b", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "prior_flag"]]}
+    ]
             "shipper_params_template": {
                 "b2b_cc": [
                     {
