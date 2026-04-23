@@ -119,7 +119,55 @@ def write_sheet(
         params={"valueInputOption": "USER_ENTERED"},
         body={"values": values},
     )
+def read_column_as_number_list_preserve(
+    spreadsheet_id: str,
+    sheet_name: str,
+    range_a1: str,
+    default=None,
+    allow_float: bool = False,
+) -> list:
+    """
+    Read a single-column range and return list with preserved order.
+    
+    Empty cells will be replaced with `default` instead of skipped.
 
+    Example:
+        B2:B5 -> ['1', '', '3', '']
+        default=0 → [1, 0, 3, 0]
+        default=None → [1, None, 3, None]
+    """
+    wb = open_by_key(spreadsheet_id)
+    worksheet = wb.worksheet(sheet_name)
+
+    values = worksheet.get(range_a1)
+
+    result = []
+
+    for row in values:
+        if not row:
+            result.append(default)
+            continue
+
+        raw_val = str(row[0]).strip()
+
+        if raw_val == "":
+            result.append(default)
+            continue
+
+        try:
+            num = float(raw_val)
+
+            if not allow_float and num.is_integer():
+                num = int(num)
+
+            result.append(num)
+
+        except ValueError:
+            raise ValueError(
+                f"Invalid numeric value '{raw_val}' in {sheet_name}!{range_a1}"
+            )
+
+    return result
 
 def append_sheet(
     spreadsheet_id: str,
@@ -186,10 +234,3 @@ def copy_columns(
     write_sheet(target_sheet_id, target_tab, df[existing], start_cell=start_cell)
 
 
-def mark_sanggahan_open(spreadsheet_id: str, sheet_name: str) -> None:
-    """
-    Mark all sanggahan rows as 'open' in the tracker.
-    TODO: Implement real logic if needed.
-    """
-    # Placeholder: implement column-based update when schema is final
-    return
