@@ -36,31 +36,59 @@ GSHEET = {
     
     # Gsheet sanggahan
     "sanggahan": {
-        "url": "https://docs.google.com/spreadsheets/d/1q1CkYFiZQKRvfYDjZGOJmqNOndbH3hd7Du_Pq0Wn7AU/edit?gid=1000001726#gid=1000001726",
-        "sheet_id": "1q1CkYFiZQKRvfYDjZGOJmqNOndbH3hd7Du_Pq0Wn7AU",
-        "tabs": {
-            "poa_iv_b2b_all_b2c_cold": "POA IV B2B All & B2C Cold",
-            "poa_iv_keyshipper": "POA IV Keyshipper" ,
-            "poa_iv_others": "POA IV Others",
-            "lnd_rate_b2b_all_b2c_cold": "LnD Rate B2B All & B2C Cold",
-            "lnd_rate_keyshipper" : "LnD Rate Keyshipper",
-            "lnd_rate_others":"LnD Rate Others",
-            "dws":"DWS",
-            "cpp":"CPP"
-              # sesuaikan nama tab
-        },
-        # Range yang di-clear di semua tab sanggahan (sesuaikan)
-        "clear_ranges": {
-              "poa_iv_b2b_all_b2c_cold": ["A3:G"],
-              "poa_iv_keyshipper": ["A3:G"],
-              "poa_iv_others": ["A3:G"],
-              "lnd_rate_b2b_all_b2c_cold": ["A3:C"],
-              "lnd_rate_keyshipper": ["A3:C"],
-              "lnd_rate_others": ["A3:C"],
-              "dws" : ["A3:F"],
-              "cpp":["A3:K"]
-        }
+    "url": "https://docs.google.com/spreadsheets/d/1A7khbGVLlRyOlxfiRSB95LL6Os9J2SyTVpBpLsV-06w/edit?gid=704586042#gid=704586042",
+    "sheet_id": "1A7khbGVLlRyOlxfiRSB95LL6Os9J2SyTVpBpLsV-06w",
+    "tabs": {
+        "pu_to_poh_msh_keyshipper": "PU to PoH MSH Keyshipper",
+        "pu_to_poh_msh_non_keyshipper": "PU to PoH MSH Non Keyshipper",
+        "pu_to_poh_msh_b2b_all_b2c_cold": "PU to PoH MSH B2B All & B2C Cold",
+        "no_success_rate_rts_shopee": "NO Success Rate RTS Shopee",
+        "no_success_rate_rts_others": "NO Success Rate RTS Others",
+        "no_success_rate_rts_lazada": "NO Success Rate RTS Lazada",
+        "no_rsvn_completed_b2b_all_b2c_cold": "NO RSVN Completed B2B All & B2C Cold",
+        "no_attempt_rate_keyshipper": "NO Attempt Rate Keyshipper",
+        "pst_itv_keyshipper": "PST ITV Keyshipper",
+        "rot_b2b_all_b2c_cold": "RoT B2B All & B2C Cold",
+        "popa_validity_lazada": "POPA Validity Lazada",
+        "popa_validity_aggregator": "POPA Validity Aggregator",
+        "popa_validity_fs": "POPA Validity FS",
+        "popa_validity_fsbd_lazada": "POPA Validity FSBD Lazada",
+        "lnd_rate_b2b_all_b2c_cold": "LnD Rate B2B All & B2C Cold",
+        "lnd_rate": "LnD Rate",
+        "4w_productivity": "4W Productivity",
+        "assignment_inaccuracy": "Assignment Inaccuracy",
+        "assignment_stream": "Assignment Stream",
+        "eligibility_volume": "Eligibility (Volume)",
+        "eki_no_hit": "EKI no hit",
+        "staff_list": "Staff List"
     },
+
+    # isi range sendiri nanti
+    "clear_ranges": {
+        "pu_to_poh_msh_keyshipper": ["A3:H"],
+        "pu_to_poh_msh_non_keyshipper": ["A3:H"],
+        "pu_to_poh_msh_b2b_all_b2c_cold": ["A3:H"],
+        "no_success_rate_rts_shopee": ["A3:F"],
+        "no_success_rate_rts_others": ["A3:F"],
+        "no_success_rate_rts_lazada": ["A3:F"],
+        "no_rsvn_completed_b2b_all_b2c_cold": ["A3:D"],
+        "no_attempt_rate_keyshipper": ["A3:D"],
+        "pst_itv_keyshipper": ["A3:D"],
+        "rot_b2b_all_b2c_cold": ["A3:D"],
+        "popa_validity_lazada": ["A3:F"],
+        "popa_validity_aggregator": ["A3:F"],
+        "popa_validity_fs": ["A3:F"],
+        "popa_validity_fsbd_lazada": ["A3:F"],
+        "lnd_rate_b2b_all_b2c_cold": ["A3:D"],
+        "lnd_rate": ["A3:D"],
+        "4w_productivity": ["A3:I"],
+        "assignment_inaccuracy": ["A3:E"],
+        "assignment_stream": ["A3:F"],
+        "eligibility_volume": ["A3"D],
+        "eki_no_hit": ["A3:B"],
+        "staff_list": ["A3:F"]
+    }
+},
 
  # Gsheet PNS - sumber list shipper (JANGAN diedit, read only)
     "pns": {
