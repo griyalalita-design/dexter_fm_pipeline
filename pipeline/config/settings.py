@@ -26,7 +26,7 @@ GSHEET = {
         },
         # Range yang di-clear saat Day 1 (sesuaikan)
         "clear_ranges": {
-            "raw_data_otif":  ["C4:J","O4:X","AC4:AH","AL4:AQ","AV4:AZ","BD4:BG","BL4:BO","BV4:CC","CH4:CK","CP4:CS","CX4:DA","DF4:DI"],
+            "raw_data_otif":  ["C4:J","O4:X","AC4:AH","AL4:AQ","AV4:AZ","BD4:BG","BL4:BO","BT4:BW","CB4:CE","CJ4:CM"],
             "raw_data_inter_cost": ["A4:D","I4:N","R4:W","AA4:AF"],
             "raw_data_cost": ["B3:K","L3:T","V3:AF"],
             "raw_data_assign": ["A4:E","G4:K","M4:R","V4:Y","AE4:AF"],
