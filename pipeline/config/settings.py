@@ -144,6 +144,33 @@ GSHEET = {
         }
     },
 
+     # Gsheet 2w dari tim PSP
+    "2w": {
+        "url": "https://docs.google.com/spreadsheets/d/1UpeMQ_QFiq6yhG4z0WAA2N8e2mFGoKXEL7Qn9Rz3dRs/edit?gid=190084916#gid=190084916",
+        "sheet_id": "1UpeMQ_QFiq6yhG4z0WAA2N8e2mFGoKXEL7Qn9Rz3dRs",
+        "tabs": {
+            "main": "USE THIS", # sesuaikan nama tab
+        }
+    },
+
+     # Gsheet eki dari tim PSP
+    "eki": {
+        "url": "https://docs.google.com/spreadsheets/d/1qPeQdKyMl9owKx8H4qLDXHKuhU21G0am2T7qPK5Vq0o/edit?gid=0#gid=0",
+        "sheet_id": "1qPeQdKyMl9owKx8H4qLDXHKuhU21G0am2T7qPK5Vq0o",
+        "tabs": {
+            "main": "USE THIS", # sesuaikan nama tab
+        }
+    },
+
+    # Gsheet kehadiran dari tim PSP
+    "kehadiran": {
+        "url": "https://docs.google.com/spreadsheets/d/1psfLb-iEEJGzHtsw2nUfCecUrTA7pnQz_e_pnEVEItQ/edit?gid=0#gid=0",
+        "sheet_id": "1psfLb-iEEJGzHtsw2nUfCecUrTA7pnQz_e_pnEVEItQ",
+        "tabs": {
+            "main": "USE THIS", # sesuaikan nama tab
+        }
+    },
+
     # Gsheet Converter (data ke rupiah)
     "converter": {
         "url": "https://docs.google.com/spreadsheets/d/1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c/edit?gid=1216663898#gid=1216663898",
@@ -164,15 +191,6 @@ GSHEET = {
     },
 }
 
-     # Gsheet config — tempat kamu simpen Metabase token
-    "config": {
-        "sheet_id": "1RJK6GFPVrourpdF91GQ1DWuxBBn2a9_SndoyraXckZ4",
-        "tabs": {
-            "main": "App Password & API Keys",  # nama tab tempat token disimpen
-        },
-        "token_cell": "B2",  # cell tempat token Metabase
-    },
-}
 
 # ── Metabase ─────────────────────────────────────────────────
 METABASE_CONFIG = {
