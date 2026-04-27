@@ -98,13 +98,22 @@ def run():
     tracker_id = GSHEET["tracker"]["sheet_id"]
 
     # Clear Raw Data [All]
-    raw_all_tab = GSHEET["tracker"]["tabs"]["raw_data_all"]
+    raw_all_tab = GSHEET["tracker"]["tabs"]["raw_data_otif"]
     raw_all_ranges = _iter_ranges(GSHEET["tracker"].get("clear_ranges", {}).get("raw_data_all", []))
     for rng in raw_all_ranges:
         clear_range(tracker_id, raw_all_tab, rng)
 
-    # Clear Raw Data [Cost]
+    raw_cost_tab = GSHEET["tracker"]["tabs"]["raw_data_inter_cost"]
+    raw_cost_ranges = _iter_ranges(GSHEET["tracker"].get("clear_ranges", {}).get("raw_data_cost", []))
+    for rng in raw_cost_ranges:
+        clear_range(tracker_id, raw_cost_tab, rng)
+
     raw_cost_tab = GSHEET["tracker"]["tabs"]["raw_data_cost"]
+    raw_cost_ranges = _iter_ranges(GSHEET["tracker"].get("clear_ranges", {}).get("raw_data_cost", []))
+    for rng in raw_cost_ranges:
+        clear_range(tracker_id, raw_cost_tab, rng)
+
+    raw_cost_tab = GSHEET["tracker"]["tabs"]["raw_data_assign"]
     raw_cost_ranges = _iter_ranges(GSHEET["tracker"].get("clear_ranges", {}).get("raw_data_cost", []))
     for rng in raw_cost_ranges:
         clear_range(tracker_id, raw_cost_tab, rng)
