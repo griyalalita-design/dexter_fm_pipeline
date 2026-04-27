@@ -262,7 +262,7 @@ def run():
     token = get_token()
     print("Token loaded:", bool(token))
 
-    b2b_cc_list, fsbd_list = build_shipper_lists()
+    b2b_cc_list, fsbd_list, bd_list = build_shipper_lists()
     poh_runtime_map = build_poh_runtime_by_segment()
     driver_list = build_driver_list()
 
