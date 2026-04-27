@@ -85,7 +85,7 @@ GSHEET = {
         "url": "https://docs.google.com/spreadsheets/d/15ndhmW4gtQ14uMwMOl33IZ1iS67qQTFEaFhWr-UF7Ns/edit?gid=218596977#gid=218596977",
         "sheet_id": "15ndhmW4gtQ14uMwMOl33IZ1iS67qQTFEaFhWr-UF7Ns",
         "tabs": {
-            "compile": "For KPI",
+            "compile": "For KPI ",
         },
         # Kolom yang diambil dari PNS (sesuaikan)
         "columns": {
