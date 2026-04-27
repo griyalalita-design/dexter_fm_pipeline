@@ -53,7 +53,6 @@ GSHEET = {
         "4w_productivity": "4W Productivity",
         "assignment_inaccuracy": "Assignment Inaccuracy",
         "assignment_stream": "Assignment Stream",
-        "eligibility_volume": "Eligibility (Volume)",
         "eki_no_hit": "EKI no hit",
         "staff_list": "Staff List"
     },
@@ -78,7 +77,6 @@ GSHEET = {
         "4w_productivity": ["A3:I"],
         "assignment_inaccuracy": ["A3:E"],
         "assignment_stream": ["A3:F"],
-        "eligibility_volume": ["A3"D],
         "eki_no_hit": ["A3:B"],
         "staff_list": ["A3:F"]
     }
@@ -194,8 +192,8 @@ METABASE_CONFIG = {
             "report_type": "fm",
             "common_params_template": [
                 # ===== BASIC =====
-                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "23beaf4a-c3c8-d8a9-ce5f-2a7faa597c93", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
 
                 # ===== FLAG =====
@@ -203,28 +201,28 @@ METABASE_CONFIG = {
                 {"id": "ce341566-e95e-4014-8c29-460b4aad24bd", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
 
                 # ===== SHIPPER =====
-                {"id": "bf15106e-d476-4d2e-914d-d9f1795b4423", "type": "string/=", "value_key": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                {"id": "bf15106e-d476-4d2e-914d-d9f1795b4423", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
 
                 # ===== POH PARAMS (B2BR COLUMN) =====
-                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value_key": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
-                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value_key": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
-                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value_key": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
-                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value_key": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
+                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
+                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
+                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
+                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
 
-                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value_key": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
-                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value_key": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
-                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value_key": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
-                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value_key": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
+                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
+                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
+                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
+                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
 
-                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value_key": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
-                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value_key": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
-                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value_key": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
-                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value_key": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
+                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
+                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
+                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
+                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
 
-                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value_key": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
-                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value_key": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
-                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value_key": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
-                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value_key": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
+                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
+                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
+                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
+                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
 
                 {"id": "9e5f5b73-61b4-4a12-bc21-9c0b6fae190b", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "prior_flag"]]},
             ],
@@ -235,8 +233,8 @@ METABASE_CONFIG = {
             "report_type": "fm",
             "common_params_template": [
                 # ===== BASIC ====
-                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "23beaf4a-c3c8-d8a9-ce5f-2a7faa597c93", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
 
                 # ===== FLAG =====
@@ -244,28 +242,28 @@ METABASE_CONFIG = {
                 {"id": "ce341566-e95e-4014-8c29-460b4aad24bd", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
 
                 # ===== SHIPPER =====
-                {"id": "bf15106e-d476-4d2e-914d-d9f1795b4423", "type": "string/=", "value_key": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                {"id": "bf15106e-d476-4d2e-914d-d9f1795b4423", "type": "string/=", "value": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]},
 
                 # ===== POH PARAMS (FSBD COLUMN) =====
-                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value_key": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
-                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value_key": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
-                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value_key": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
-                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value_key": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
+                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
+                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
+                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
+                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
 
-                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value_key": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
-                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value_key": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
-                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value_key": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
-                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value_key": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
+                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
+                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
+                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
+                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
 
-                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value_key": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
-                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value_key": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
-                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value_key": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
-                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value_key": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
+                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
+                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
+                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
+                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
 
-                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value_key": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
-                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value_key": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
-                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value_key": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
-                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value_key": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
+                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
+                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
+                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
+                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
 
                 {"id": "9e5f5b73-61b4-4a12-bc21-9c0b6fae190b", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "prior_flag"]]},
             ],
@@ -276,8 +274,8 @@ METABASE_CONFIG = {
             "report_type": "fm",
             "common_params_template": [
                 # ===== BASIC =====
-                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "c5ac89b7-5d66-5062-c5e6-0f40c5fcf571", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "a6d89202-390d-4ad4-c6b3-c932050f905a", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "23beaf4a-c3c8-d8a9-ce5f-2a7faa597c93", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
 
                 # ===== FLAG =====
@@ -285,28 +283,28 @@ METABASE_CONFIG = {
                 {"id": "ce341566-e95e-4014-8c29-460b4aad24bd", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
 
                 # ===== PARENT ID COALESCE =====
-                {"id": "83e73a9d-1c50-4695-9d92-8208c61b2c35", "type": "string/=", "value_key": ["7474545"], "target": ["dimension", ["template-tag", "parent_id_coalesce"]]},
+                {"id": "83e73a9d-1c50-4695-9d92-8208c61b2c35", "type": "string/=", "value": ["7474545"], "target": ["dimension", ["template-tag", "parent_id_coalesce"]]},
 
                 # ===== POH PARAMS (Tiktok COLUMN) =====
-                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value_key": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
-                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value_key": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
-                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value_key": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
-                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value_key": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
+                {"id": "6a8edb0e-155b-468e-8e48-3c1934fbf570", "type": "number/=", "value": "PU_Cutoff_1_Start", "target": ["variable", ["template-tag", "PU_Cutoff_1_Start"]]},
+                {"id": "d1de1b96-d336-b5d7-96bf-3194b7dd4f4b", "type": "number/=", "value": "PU_Cutoff_2_Start", "target": ["variable", ["template-tag", "PU_Cutoff_2_Start"]]},
+                {"id": "e37fd94d-1d16-5c88-fdcb-7dbec6ad908a", "type": "number/=", "value": "PU_Cutoff_3_Start", "target": ["variable", ["template-tag", "PU_Cutoff_3_Start"]]},
+                {"id": "152acebb-d2a6-411d-8d75-5bccaed88e6c", "type": "number/=", "value": "PU_Cutoff_4_Start", "target": ["variable", ["template-tag", "PU_Cutoff_4_Start"]]},
 
-                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value_key": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
-                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value_key": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
-                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value_key": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
-                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value_key": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
+                {"id": "63c0eed1-62dc-0e1b-cbdc-d74270411b50", "type": "number/=", "value": "PU_Cutoff_1_End", "target": ["variable", ["template-tag", "PU_Cutoff_1_End"]]},
+                {"id": "66476a89-931b-0464-e49f-e9fa13238098", "type": "number/=", "value": "PU_Cutoff_2_End", "target": ["variable", ["template-tag", "PU_Cutoff_2_End"]]},
+                {"id": "126a4d3d-6e4c-4c97-a5ed-4bc5a0e14a2d", "type": "number/=", "value": "PU_Cutoff_3_End", "target": ["variable", ["template-tag", "PU_Cutoff_3_End"]]},
+                {"id": "33f0962d-b77f-4146-9432-b88ea99dc5ec", "type": "number/=", "value": "PU_Cutoff_4_End", "target": ["variable", ["template-tag", "PU_Cutoff_4_End"]]},
 
-                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value_key": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
-                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value_key": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
-                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value_key": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
-                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value_key": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
+                {"id": "e5d83ada-c62e-2a87-c313-6cca7891b8d4", "type": "number/=", "value": "HO_Cutoff_1", "target": ["variable", ["template-tag", "HO_Cutoff_1"]]},
+                {"id": "886f5945-c6c2-e3aa-71da-54b5ff821ac1", "type": "number/=", "value": "HO_Cutoff_2", "target": ["variable", ["template-tag", "HO_Cutoff_2"]]},
+                {"id": "dc23bd24-d703-4ef5-4f8c-18d729f6762e", "type": "number/=", "value": "HO_Cutoff_3", "target": ["variable", ["template-tag", "HO_Cutoff_3"]]},
+                {"id": "e4548f50-a133-4753-8b3d-14695654c02d", "type": "number/=", "value": "HO_Cutoff_4", "target": ["variable", ["template-tag", "HO_Cutoff_4"]]},
 
-                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value_key": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
-                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value_key": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
-                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value_key": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
-                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value_key": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
+                {"id": "8a339727-f523-c295-8f4d-d0952249fb1b", "type": "number/=", "value": "Grace_Period_1", "target": ["variable", ["template-tag", "Grace_Period_1"]]},
+                {"id": "61cf5e4a-76d0-904a-4646-5a31bb310492", "type": "number/=", "value": "Grace_Period_2", "target": ["variable", ["template-tag", "Grace_Period_2"]]},
+                {"id": "8daed83d-f49b-bbe3-7ff6-9b1dbf3119a8", "type": "number/=", "value": "Grace_Period_3", "target": ["variable", ["template-tag", "Grace_Period_3"]]},
+                {"id": "6ccd2c1c-98bd-4474-a306-fb1cd628eedd", "type": "number/=", "value": "Grace_Period_4", "target": ["variable", ["template-tag", "Grace_Period_4"]]},
 
                 {"id": "9e5f5b73-61b4-4a12-bc21-9c0b6fae190b", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "prior_flag"]]},
             ],
@@ -336,7 +334,7 @@ METABASE_CONFIG = {
                 {"id": "cd9e0dbe-b027-4a2a-bb92-bf8175c59aa1", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
                 {"id": "f1fca7d5-bddb-42ce-9771-1f17b2c6a1ec", "type": "string/=", "value": "driver_type", "target": ["dimension", ["template-tag", "route_driver_type"]]},
                 {"id": "f72285e9-4c7f-4b94-9b22-9cf8c929946f", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "nv_not_liable"]]},
-                {"id": "ecfc3da2-aca6-4303-bb42-aa3f9a21810d", "type": "string/contains", "value": ["B2BR"], "target": ["dimension", ["template-tag", "pickup_tags"]], "options": {"case-sensitive": False}}
+                # {"id": "ecfc3da2-aca6-4303-bb42-aa3f9a21810d", "type": "string/contains", "value": ["B2BR"], "target": ["dimension", ["template-tag", "pickup_tags"]], "options": {"case-sensitive": False}}
                 {"id": "6980e48f-126e-48d9-a0d3-da79bbd63751", "type": "number/=", "value": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]}
                 # {"id": "52e3d080-5c98-4416-aa1f-dc590efa3d3c", "type": "string/=", "value": key_shipper_list, "target": ["dimension", ["template-tag", "sf_parent_acc_id_coalesce"]]},
                 # {"id": "e6bb5201-d1b8-46aa-9b98-e2af5fe6578d", "type": "string/=", "value": ["Restock"], "target": ["dimension", ["template-tag", "sf_nv_product_line"]]},
@@ -351,8 +349,8 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_NO_ATTEMPT_RATE",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
         },
@@ -365,16 +363,16 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_PST_ITV",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
             "shipper_params_template": {
                 "b2b_cc": [
-                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value_key": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
                 "fsbd": [
-                    {"id": "PASTE_FSBD_PARAM_ID", "type": "string/=", "value_key": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_FSBD_PARAM_ID", "type": "string/=", "value": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
             },
         },
@@ -387,13 +385,13 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_ROT",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
             "shipper_params_template": {
                 "b2b_cc": [
-                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value_key": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
             },
         },
@@ -406,13 +404,13 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_LND",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
             "shipper_params_template": {
                 "b2b_cc": [
-                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value_key": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_B2B_CC_PARAM_ID", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
             },
         },
@@ -425,22 +423,22 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_POPA_VALIDITY",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
             "shipper_params_template": {
                 "lazada": [
-                    {"id": "PASTE_LAZADA_PARAM_ID", "type": "string/=", "value_key": "lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_LAZADA_PARAM_ID", "type": "string/=", "value": "lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
                 "bd": [
-                    {"id": "PASTE_BD_PARAM_ID", "type": "string/=", "value_key": "bd", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_BD_PARAM_ID", "type": "string/=", "value": "bd", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
                 "fs": [
-                    {"id": "PASTE_FS_PARAM_ID", "type": "string/=", "value_key": "fs", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_FS_PARAM_ID", "type": "string/=", "value": "fs", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
                 "fsbd_lazada": [
-                    {"id": "PASTE_FSBD_LAZADA_PARAM_ID", "type": "string/=", "value_key": "fsbd_lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "PASTE_FSBD_LAZADA_PARAM_ID", "type": "string/=", "value": "fsbd_lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
             },
         },
@@ -453,8 +451,8 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_ASSIGN_INACCURACY",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
         },
@@ -467,8 +465,8 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_ASSIGN_STREAMLINE",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
         },
@@ -481,13 +479,11 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_4W_PRODUCTIVITY",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value_key": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value_key": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
+                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
+                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
                 {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
             ],
         },
-    }
-}
     }
 }
 # ── Archieved File ─────────────────────────────────────────────────────
