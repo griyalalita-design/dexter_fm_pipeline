@@ -221,7 +221,7 @@ def build_driver_list():
 
     df = read_sheet(
         GSHEET["param_metabase"]["sheet_id"],
-        GSHEET["param_metabase"]["tabs"]["driver_type"],  # pastikan key ini ada di settings
+        GSHEET["param_metabase"]["tabs"]["param_driver_type"],  # pastikan key ini ada di settings
     )
 
     df.columns = df.columns.astype(str).str.strip()
