@@ -332,7 +332,7 @@ METABASE_CONFIG = {
                 {"id": "cd9e0dbe-b027-4a2a-bb92-bf8175c59aa1", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
                 {"id": "f1fca7d5-bddb-42ce-9771-1f17b2c6a1ec", "type": "string/=", "value": "driver_type", "target": ["dimension", ["template-tag", "route_driver_type"]]},
                 {"id": "f72285e9-4c7f-4b94-9b22-9cf8c929946f", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "nv_not_liable"]]},
-                # {"id": "ecfc3da2-aca6-4303-bb42-aa3f9a21810d", "type": "string/contains", "value": ["B2BR"], "target": ["dimension", ["template-tag", "pickup_tags"]], "options": {"case-sensitive": False}}
+                {"id": "ecfc3da2-aca6-4303-bb42-aa3f9a21810d", "type": "string/contains", "value": ["B2BR"], "target": ["dimension", ["template-tag", "pickup_tags"]], "options": {"case-sensitive": False}},
                 {"id": "6980e48f-126e-48d9-a0d3-da79bbd63751", "type": "number/=", "value": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]}
                 # {"id": "52e3d080-5c98-4416-aa1f-dc590efa3d3c", "type": "string/=", "value": key_shipper_list, "target": ["dimension", ["template-tag", "sf_parent_acc_id_coalesce"]]},
                 # {"id": "e6bb5201-d1b8-46aa-9b98-e2af5fe6578d", "type": "string/=", "value": ["Restock"], "target": ["dimension", ["template-tag", "sf_nv_product_line"]]},
