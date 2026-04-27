@@ -37,4 +37,4 @@ jobs:
         working-directory: pipeline
         env:
           PYTHONPATH: ${{ github.workspace }}/pipeline
-        run: python -m jobs.day1
+        run: python -m jobs.day2
