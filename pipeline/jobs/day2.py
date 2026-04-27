@@ -318,6 +318,7 @@ def run():
         "driver_list": driver_list,
         "hub_whitelist1": hub_whitelist["hub_whitelist1"],
         "hub_whitelist2": hub_whitelist["hub_whitelist2"],
+        "period_str": f"{start_date}~{end_date}",
     }
 
     results = {}
