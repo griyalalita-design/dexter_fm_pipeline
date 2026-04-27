@@ -316,7 +316,7 @@ METABASE_CONFIG = {
                 {"id": "bc4a93b1-7398-38d2-ca2b-ff575a7e7a7d", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "end_date"]]},
                 {"id": "2a99966a-024c-ce38-33c0-9e4d4b062bd5", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
                 {"id": "7575936f-5fb5-4fd0-b926-ed0dc60ec15a", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
-                {"id": "8ea5d996-fdc4-6822-b89f-9f37eadd275c", "type": "string/=", "value": "driver_list", "target": ["dimension", ["template-tag", "courier_type"]]},
+                {"id": "8ea5d996-fdc4-6822-b89f-9f37eadd275c", "type": "string/=", "value": "driver_type", "target": ["dimension", ["template-tag", "courier_type"]]},
                 {"id": "c142f377-ebaa-4f51-a4a8-655ce6553377", "type": "string/=", "value": "bd_shipper", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 {"id": "4998d505-7345-4e03-adc3-bdc5544bdfa8", "type": "string/=", "value": ["7474545", "216977", "341107"], "target": ["dimension", ["template-tag", "parent_id_coalesce"]]}
             ],
