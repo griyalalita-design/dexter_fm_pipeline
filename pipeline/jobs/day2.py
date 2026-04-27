@@ -216,6 +216,42 @@ def should_skip_report(report_key):
     return not url or "PASTE_" in url
 
 
+def build_driver_list():
+    print("\n[2/5] Read Driver List from param_metabase...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["driver_type"],  # pastikan key ini ada di settings
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    required_cols = ["Function", "Driver Type"]
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        raise ValueError(
+            f"Kolom tidak ditemukan di Driver Type sheet: {missing}. "
+            f"Available: {df.columns.tolist()}"
+        )
+
+    # ✅ ambil hanya FM
+    df_fm = df[df["Function"].astype(str).str.strip() == "FM"]
+
+    driver_list = (
+        df_fm["Driver Type"]
+        .dropna()
+        .astype(str)
+        .str.strip()
+        .loc[lambda s: s != ""]
+        .drop_duplicates()
+        .tolist()
+    )
+
+    print(f"Total driver_list: {len(driver_list)} | sample: {driver_list[:5]}")
+
+    return driver_list
+
+
 def run():
     print("=== FM DAY 2 START ===")
 
@@ -228,6 +264,7 @@ def run():
 
     b2b_cc_list, fsbd_list = build_shipper_lists()
     poh_runtime_map = build_poh_runtime_by_segment()
+    driver_list = build_driver_list()
 
     base_runtime_values = {
         "start_date": start_date,
@@ -235,12 +272,7 @@ def run():
         "b2b_cc": b2b_cc_list,
         "fsbd": fsbd_list,
         "bd_shipper": bd_list,
-
-        # hardcoded / temporary runtime values
-        # nanti bisa kamu pindah ke gsheet param juga
-        "driver_list": [],      # isi nanti kalau param courier_type butuh list
-        "driver_type": [],      # isi nanti kalau param route_driver_type butuh list
-        "bd_shipper": [],       # isi nanti kalau param shipper_id BD butuh list
+        "driver_list": driver_list, 
     }
 
     results = {}
