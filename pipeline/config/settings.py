@@ -357,9 +357,14 @@ METABASE_CONFIG = {
             "url": "PASTE_URL_PST_ITV",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
-                {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "73b82b17-f104-4e8e-97a5-893bead6e23d", "type": "number/=", "value": cutoff_value[3], "target": ["variable", ["template-tag", "cutoff1"]]},
+                {"id": "6e097897-9131-4290-9e72-df0a88810fb5", "type": "number/=", "value": cutoff_value[2], "target": ["variable", ["template-tag", "base_cutoff"]]},
+                {"id": "3b1e2bba-7910-467e-b990-ebbeac9104ef", "type": "number/=", "value": cutoff_value[4], "target": ["variable", ["template-tag", "cutoff2"]]},
+                {"id": "667af047-21e0-4308-abf9-8e7e015dc173", "type": "string/=", "value": hub_whitelist1_list, "target": ["dimension", ["template-tag", "whitelist_hub1"]]},
+                {"id": "933b6ecb-ebdb-43ba-a081-f601e77a7312", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "0ce6735d-ef50-4044-b2ed-46a62573a711", "type": "date/all-options", "value": period_str, "target": ["dimension", ["template-tag", "pickup_date"]]},
+                {"id": "0a1bebfe-b890-4dba-9c02-afe4c5a8c948", "type": "string/=", "value": hub_whitelist2_list, "target": ["dimension", ["template-tag", "whitelist_hub2"]]},
+                {"id": "63333156-a5a8-4418-9e7f-0a41734f57de", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "prior_flag"]]}
             ],
             "shipper_params_template": {
                 "b2b_cc": [
