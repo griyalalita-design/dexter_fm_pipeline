@@ -251,6 +251,48 @@ def build_driver_list():
 
     return driver_list
 
+def build_hub_whitelist():
+    print("\n[2/5] Read Hub Whitelist ITV from param_metabase...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_whitelist_hub_itv"],
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    required_cols = ["Description", "Hub Name"]
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        raise ValueError(
+            f"Kolom tidak ditemukan di Whitelist Hub ITV: {missing}. "
+            f"Available: {df.columns.tolist()}"
+        )
+
+    df["Description"] = df["Description"].astype(str).str.strip()
+
+    def get_list(desc):
+        result = (
+            df[df["Description"].eq(desc)]["Hub Name"]
+            .dropna()
+            .astype(str)
+            .str.strip()
+            .loc[lambda s: s != ""]
+            .drop_duplicates()
+            .tolist()
+        )
+
+        if not result:
+            print(f"WARNING: {desc} list kosong!")
+
+        print(f"Total {desc}: {len(result)} | sample: {result[:5]}")
+        return result
+
+    return {
+        "hub_whitelist1": get_list("Whitelist Hub1"),
+        "hub_whitelist2": get_list("Whitelist Hub2"),
+    }
+
 
 def run():
     print("=== FM DAY 2 START ===")
@@ -265,6 +307,7 @@ def run():
     b2b_cc_list, fsbd_list, bd_list = build_shipper_lists()
     poh_runtime_map = build_poh_runtime_by_segment()
     driver_list = build_driver_list()
+    hub_whitelist = build_hub_whitelist()
 
     base_runtime_values = {
         "start_date": start_date,
@@ -272,7 +315,9 @@ def run():
         "b2b_cc": b2b_cc_list,
         "fsbd": fsbd_list,
         "bd_shipper": bd_list,
-        "driver_list": driver_list, 
+        "driver_list": driver_list,
+        "hub_whitelist1": hub_whitelist["hub_whitelist1"],
+        "hub_whitelist2": hub_whitelist["hub_whitelist2"],
     }
 
     results = {}
