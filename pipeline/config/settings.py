@@ -357,9 +357,9 @@ METABASE_CONFIG = {
             "url": "https://metabase.ninjavan.co/api/card/122382/query/json",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "73b82b17-f104-4e8e-97a5-893bead6e23d", "type": "number/=", "value": cutoff_value[3], "target": ["variable", ["template-tag", "cutoff1"]]},
-                {"id": "6e097897-9131-4290-9e72-df0a88810fb5", "type": "number/=", "value": cutoff_value[2], "target": ["variable", ["template-tag", "base_cutoff"]]},
-                {"id": "3b1e2bba-7910-467e-b990-ebbeac9104ef", "type": "number/=", "value": cutoff_value[4], "target": ["variable", ["template-tag", "cutoff2"]]},
+                {"id": "73b82b17-f104-4e8e-97a5-893bead6e23d", "type": "number/=", "value": "cutoff1", "target": ["variable", ["template-tag", "cutoff1"]]},
+                {"id": "6e097897-9131-4290-9e72-df0a88810fb5", "type": "number/=", "value": "base_cutoff", "target": ["variable", ["template-tag", "base_cutoff"]]},
+                {"id": "3b1e2bba-7910-467e-b990-ebbeac9104ef", "type": "number/=", "value": "cutoff2", "target": ["variable", ["template-tag", "cutoff2"]]},
                 {"id": "667af047-21e0-4308-abf9-8e7e015dc173", "type": "string/=", "value": "hub_whitelist1", "target": ["dimension", ["template-tag", "whitelist_hub1"]]},
                 {"id": "933b6ecb-ebdb-43ba-a081-f601e77a7312", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
                 {"id": "0ce6735d-ef50-4044-b2ed-46a62573a711", "type": "date/all-options", "value": "period_str", "target": ["dimension", ["template-tag", "pickup_date"]]},
