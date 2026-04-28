@@ -376,17 +376,19 @@ METABASE_CONFIG = {
             },
         },
 
-        # =====================================================
-        # ROT
-        # common + b2b_cc
-        # =====================================================
         "rot": {
             "url": "PASTE_URL_ROT",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
-                {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "190fb3a4-e6cb-4b4e-a78b-f4acb7cc5448", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "26473b49-9801-4240-ade1-6c07b7851c2a", "type": "date/single", "value": "period_str", "target": ["variable", ["template-tag", "start_date"]]},
+                {"id": "8d72da7f-6a48-4384-a283-a1c81db37e2d", "type": "date/single", "value": "period_str", "target": ["variable", ["template-tag", "end_date"]]},
+                {"id": "cd9e0dbe-b027-4a2a-bb92-bf8175c59aa1", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+                {"id": "f1fca7d5-bddb-42ce-9771-1f17b2c6a1ec", "type": "string/=", "value": "driver_list", "target": ["dimension", ["template-tag", "route_driver_type"]]},
+                {"id": "ecfc3da2-aca6-4303-bb42-aa3f9a21810d", "type": "string/contains", "value": ["B2BR"], "target": ["dimension", ["template-tag", "pickup_tags"]], "options": {"case-sensitive": False}}
+                {"id": "6980e48f-126e-48d9-a0d3-da79bbd63751", "type": "number/=", "value": key_shipper_list, "target": ["dimension", ["template-tag", "shipper_id"]]},
+                # {"id": "52e3d080-5c98-4416-aa1f-dc590efa3d3c", "type": "string/=", "value": key_shipper_list, "target": ["dimension", ["template-tag", "sf_parent_acc_id_coalesce"]]}
+                # {"id": "e6bb5201-d1b8-46aa-9b98-e2af5fe6578d", "type": "string/=", "value": ["Restock"], "target": ["dimension", ["template-tag", "sf_nv_product_line"]]},
             ],
             "shipper_params_template": {
                 "b2b_cc": [
