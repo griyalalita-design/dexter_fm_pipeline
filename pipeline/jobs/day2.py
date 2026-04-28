@@ -293,6 +293,40 @@ def build_hub_whitelist():
         "hub_whitelist2": get_list("Whitelist Hub2"),
     }
 
+def build_cutoff_runtime():
+    print("\n[2/5] Read Cutoff params from param_metabase...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_cutoff"],
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    # Ambil kolom kedua kalau formatnya mirip: Description | Value
+    value_col = df.columns[1]
+
+    cutoff_values = (
+        df[value_col]
+        .dropna()
+        .astype(str)
+        .str.strip()
+        .loc[lambda s: s != ""]
+        .tolist()
+    )
+
+    if len(cutoff_values) < 5:
+        raise ValueError(f"Cutoff values kurang dari 5 row. Current: {cutoff_values}")
+
+    def to_number(x):
+        num = float(x)
+        return int(num) if num.is_integer() else num
+
+    return {
+        "base_cutoff": to_number(cutoff_values[2]),
+        "cutoff1": to_number(cutoff_values[3]),
+        "cutoff2": to_number(cutoff_values[4]),
+    }
 
 def run():
     print("=== FM DAY 2 START ===")
@@ -308,6 +342,7 @@ def run():
     poh_runtime_map = build_poh_runtime_by_segment()
     driver_list = build_driver_list()
     hub_whitelist = build_hub_whitelist()
+    cut_off= build_cutoff_runtime()
 
     base_runtime_values = {
         "start_date": start_date,
@@ -318,7 +353,8 @@ def run():
         "driver_list": driver_list,
         "hub_whitelist1": hub_whitelist["hub_whitelist1"],
         "hub_whitelist2": hub_whitelist["hub_whitelist2"],
-        "period_str": f"{start_date}~{end_date}",
+        "period_str": f"{start_date}~{end_date}"
+        **cutoff_runtime,
     }
 
     results = {}
