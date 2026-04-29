@@ -99,10 +99,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="Q3:V",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+        dest_start_cell="I4",
     )
     print("===== POPA Validity Lazada -> Tracker Done =====")
 
@@ -110,10 +110,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_aggregator"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="Q3:V",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+        dest_start_cell="R4",
     )
     print("===== POPA Validity Aggregator -> Tracker Done =====")
 
@@ -121,10 +121,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_fsbd_lazada"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="Q3:V",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+        dest_start_cell="M4",
     )
     print("===== POPA Validity FSBD Lazada -> Tracker Done =====")
 
@@ -132,10 +132,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate_b2b_all_b2c_cold"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="N3:R",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+        dest_start_cell="A4",
     )
     print("===== LnD Rate B2B All & B2C Cold -> Tracker Done =====")
 
@@ -143,10 +143,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="N3:R",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+        dest_start_cell="V4",
     )
     print("===== LnD Rate -> Tracker Done =====")
 
@@ -154,10 +154,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["4w_productivity"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="W3:E",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_cost"],
+        dest_start_cell="L3",
     )
     print("===== 4W Productivity -> Tracker Done =====")
 
