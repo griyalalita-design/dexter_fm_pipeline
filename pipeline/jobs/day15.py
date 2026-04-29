@@ -61,25 +61,37 @@ def run():
     )
     print("===== N0 Attempt Rate Keyshipper -> Tracker Done =====")
 
+    # PST ITV B2B Cold Chain -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["pst_itv_b2b_all_b2c_cold"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="BB4",
+         )
+    print("===== PST ITV Keyshipper -> Tracker Done =====")
+
     # PST ITV Keyshipper -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["pst_itv_keyshipper"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="M3:P",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="BJ4",
     )
     print("===== PST ITV Keyshipper -> Tracker Done =====")
+
 
     # RoT B2B All & B2C Cold -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["rot_b2b_all_b2c_cold"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="M3:P",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="BR4",
     )
     print("===== RoT B2B All & B2C Cold -> Tracker Done =====")
 
