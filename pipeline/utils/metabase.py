@@ -48,23 +48,30 @@ def get_token() -> str:
     return token
 
 
+
+
 def tarik_metabase(url, parameters, token, desc):
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "X-Metabase-Session": token
+        "X-Metabase-Session": token,
     }
     payload = "parameters=" + quote(json.dumps(parameters))
 
-    print(f"Pulling {desc} ...")
-    r = requests.post(url, headers=headers, data=payload)
+    print(f"Pulling {desc}")
+    r = requests.post(url, headers=headers, data=payload, timeout=120)
+
+    print(f"[{desc}] status: {r.status_code}")
+    print(f"[{desc}] content-type: {r.headers.get('content-type')}")
 
     if r.status_code != 200:
-        print(f"[{desc}] FAILED: {r.status_code} | {r.text[:300]}")
+        print(f"[{desc}] FAILED body preview: {r.text[:1000]}")
         return pd.DataFrame()
 
-    data = r.json()
+    try:
+        data = r.json()
+    except requests.exceptions.JSONDecodeError:
+        print(f"[{desc}] Response is not JSON")
+        print(f"[{desc}] body preview: {r.text[:1000]}")
+        return pd.DataFrame()
+
     return pd.DataFrame(data) if data else pd.DataFrame()
-
-
-def build_params(common_params, extra_params):
-    return common_params + extra_params
