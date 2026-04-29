@@ -6,82 +6,203 @@ from config.settings import GSHEET
 def run():
     print("===== Kita Mulai Run Day 15 Review Sanggahan =====")
 
-    # POA IV B2B All & B2C Cold -> Tracker
+    # PU to PoH MSH Keyshipper -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["poa_iv_b2b_all_b2c_cold"],
-        source_range="O3:U",
+        source_tab=GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_keyshipper"],
+        source_range="Q3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="C4",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="C4:J",
     )
-    print("===== POA IV B2B All & B2C Cold -> Tracker Done =====")
+    print("===== PU to PoH MSH Keyshipper -> Tracker Done =====")
 
-    # POA IV Keyshipper -> Tracker
+    # PU to PoH MSH Non Keyshipper -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["poa_iv_keyshipper"],
-        source_range="O3:U",
+        source_tab=GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_non_keyshipper"],
+        source_range="Q3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="P4",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="Q4:X",
     )
-    print("===== POA IV Keyshipper -> Tracker Done =====")
+    print("===== PU to PoH MSH Non Keyshipper -> Tracker Done =====")
 
-    # POA IV Others -> Tracker
+    # PU to PoH MSH B2B All & B2C Cold -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["poa_iv_others"],
-        source_range="O3:U",
+        source_tab=GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_b2b_all_b2c_cold"],
+        source_range="TODO_SOURCE_RANGE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="AC4",
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
     )
-    print("===== POA IV Others -> Tracker Done =====")
+    print("===== PU to PoH MSH B2B All & B2C Cold -> Tracker Done =====")
 
-    # LND B2B All & B2C Cold -> Tracker
+    # N0 Success Rate RTS Shopee, Laz, Other -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["no_success_rate_rts_shopee_laz_other"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== N0 Success Rate RTS Shopee, Laz, Other -> Tracker Done =====")
+
+    # N0 RSVN Completed B2B All & B2C Cold -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["no_rsvn_completed_b2b_all_b2c_cold"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== N0 RSVN Completed B2B All & B2C Cold -> Tracker Done =====")
+
+    # N0 Attempt Rate Keyshipper -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["no_attempt_rate_keyshipper"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== N0 Attempt Rate Keyshipper -> Tracker Done =====")
+
+    # PST ITV Keyshipper -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["pst_itv_keyshipper"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== PST ITV Keyshipper -> Tracker Done =====")
+
+    # RoT B2B All & B2C Cold -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["rot_b2b_all_b2c_cold"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== RoT B2B All & B2C Cold -> Tracker Done =====")
+
+    # POPA Validity Lazada -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== POPA Validity Lazada -> Tracker Done =====")
+
+    # POPA Validity Aggregator -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_aggregator"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== POPA Validity Aggregator -> Tracker Done =====")
+
+    # POPA Validity FSBD Lazada -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_fsbd_lazada"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== POPA Validity FSBD Lazada -> Tracker Done =====")
+
+    # LnD Rate B2B All & B2C Cold -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate_b2b_all_b2c_cold"],
-        source_range="J3:L",
+        source_range="TODO_SOURCE_RANGE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="AP4",
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
     )
-    print("===== LND B2B All & B2C Cold -> Tracker Done =====")
+    print("===== LnD Rate B2B All & B2C Cold -> Tracker Done =====")
 
-    # LND Keyshipper -> Tracker
+    # LnD Rate -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate_keyshipper"],
-        source_range="J3:L",
+        source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate"],
+        source_range="TODO_SOURCE_RANGE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="AY4",
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
     )
-    print("===== LND Keyshipper -> Tracker Done =====")
+    print("===== LnD Rate -> Tracker Done =====")
 
-    # LND Others -> Tracker
+    # 4W Productivity -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate_others"],
-        source_range="J3:L",
+        source_tab=GSHEET["sanggahan"]["tabs"]["4w_productivity"],
+        source_range="TODO_SOURCE_RANGE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="BH4",
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
     )
-    print("===== LND Others -> Tracker Done =====")
+    print("===== 4W Productivity -> Tracker Done =====")
 
-    # DWS -> Tracker
+    # Assignment Inaccuracy -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["dws"],
-        source_range="M3:R",
+        source_tab=GSHEET["sanggahan"]["tabs"]["assignment_inaccuracy"],
+        source_range="TODO_SOURCE_RANGE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_all"],
-        dest_start_cell="BO4",
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
     )
-    print("===== DWS -> Tracker Done =====")
+    print("===== Assignment Inaccuracy -> Tracker Done =====")
+
+    # Assignment Stream -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["assignment_stream"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== Assignment Stream -> Tracker Done =====")
+
+    # EKI no hit -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["eki_no_hit"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== EKI no hit -> Tracker Done =====")
+
+    # Staff List -> Tracker
+    copy_range(
+        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+        source_tab=GSHEET["sanggahan"]["tabs"]["staff_list"],
+        source_range="TODO_SOURCE_RANGE",
+        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+        dest_tab="TODO_DEST_TAB",
+        dest_start_cell="TODO_DEST_START_CELL",
+    )
+    print("===== Staff List -> Tracker Done =====")
 
     print("===== Day 15 Done =====")
 
