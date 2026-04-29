@@ -165,10 +165,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["assignment_inaccuracy"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="O3:S",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+        dest_start_cell="G4",
     )
     print("===== Assignment Inaccuracy -> Tracker Done =====")
 
@@ -176,10 +176,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["assignment_stream"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="P3:T",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+        dest_start_cell="A4",
     )
     print("===== Assignment Stream -> Tracker Done =====")
 
@@ -187,10 +187,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["eki_no_hit"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="J3:K",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+        dest_start_cell="AE4",
     )
     print("===== EKI no hit -> Tracker Done =====")
 
@@ -198,10 +198,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["staff_list"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="S3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["staff_list"],
+        dest_start_cell="A2",
     )
     print("===== Staff List -> Tracker Done =====")
 
