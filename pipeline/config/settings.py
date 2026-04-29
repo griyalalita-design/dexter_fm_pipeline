@@ -437,11 +437,11 @@ METABASE_CONFIG = {
                 {"id": "81067f90-3579-4135-8c4e-353934cb6d04", "type": "string/=", "value": ["COMPLETED", "Success"], "target": ["dimension", ["template-tag", "status"]]},
                 {"id": "7f44a418-7b61-4949-9f27-16bd983ce496", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "start"]]},
                 {"id": "d4f96a68-280c-4f69-8b17-c91341d69291", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "end"]]},
-                {"id": "87e7422d-4d68-4223-b08f-6adca77cf9cd", "type": "number/=", "value": "target_value", "target": ["variable", ["template-tag", "target_pdv"]]},
+                {"id": "87e7422d-4d68-4223-b08f-6adca77cf9cd", "type": "number/=", "value": [60], "target": ["variable", ["template-tag", "target_pdv"]]},
                 {"id": "a6d11133-5938-4d78-983d-3da0675c70d6", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "show_rsvn_below_target_only"]]},
                 {"id": "90025015-db73-43a6-98b5-ab9e122626d7", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
                 {"id": "2b5ddda7-de30-4687-884b-9c338e6e1615", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
-                {"id": "4f1cee13-7b68-42ba-ba29-24ebe3082b5b", "type": "number/!=", "value": "address_id_list", "target": ["dimension", ["template-tag", "address_id"]]}
+                {"id": "4f1cee13-7b68-42ba-ba29-24ebe3082b5b", "type": "number/!=", "value": [1], "target": ["dimension", ["template-tag", "address_id"]]}
             ],
         },
 
