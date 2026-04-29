@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from utils.metabase import tarik_metabase, get_token
-from utils.gsheet import read_sheet, get_cell_value
+from utils.gsheet import read_sheet
 from config.settings import METABASE_CONFIG, GSHEET
 
 
@@ -21,9 +21,6 @@ def get_previous_month_period():
 
 
 def normalize_scalar(value):
-    while isinstance(value, list) and len(value) == 1:
-        value = value[0]
-
     if value is None:
         return None
 
@@ -44,18 +41,6 @@ def normalize_scalar(value):
         return text
 
 
-def read_vertical_values(sheet_id, tab_name, start_row, end_row, col="B"):
-    values = []
-    for row in range(start_row, end_row + 1):
-        val = get_cell_value(
-            sheet_id=sheet_id,
-            tab_name=tab_name,
-            cell=f"{col}{row}",
-        )
-        values.append(normalize_scalar(val))
-    return values
-
-
 def render_params(param_templates, runtime_values):
     rendered = []
 
@@ -74,6 +59,30 @@ def render_params(param_templates, runtime_values):
         rendered.append(p)
 
     return rendered
+
+
+def get_column_name(df: pd.DataFrame, candidates: list[str]) -> str:
+    normalized = {str(col).strip().lower(): col for col in df.columns}
+    for candidate in candidates:
+        key = candidate.strip().lower()
+        if key in normalized:
+            return normalized[key]
+
+    raise ValueError(
+        f"Kolom tidak ditemukan. Candidates={candidates}, available={df.columns.tolist()}"
+    )
+
+
+def build_sheet_value_list(sheet_id: str, tab_name: str) -> list:
+    df = read_sheet(sheet_id, tab_name)
+    print(f"{tab_name} shape: {df.shape}")
+    print(f"{tab_name} columns: {df.columns.tolist()}")
+
+    value_col = get_column_name(df, ["Value"])
+    values = [normalize_scalar(v) for v in df[value_col].tolist()]
+    values = [v for v in values if v is not None]
+
+    return values
 
 
 def build_shipper_lists():
@@ -101,20 +110,10 @@ def build_shipper_lists():
         "B2B Sameday Reguler",
         "B2B Sameday Premium",
     ]
-    fsbd_categories = [
-        "FSBD Key Shipper",
-        "Aggregator Keyshipper",
-    ]
-    aggregator_categories = [
-        "Aggregator Keyshipper",
-    ]
-    bd_categories = [
-        "FSBD Key Shipper",
-    ]
 
-    def extract_shipper_ids(type_list):
+    def extract_shipper_ids(mask):
         return (
-            pd.to_numeric(df[df["Type"].isin(type_list)]["Shipper ID"], errors="coerce")
+            pd.to_numeric(df.loc[mask, "Shipper ID"], errors="coerce")
             .dropna()
             .astype(int)
             .astype(str)
@@ -122,10 +121,10 @@ def build_shipper_lists():
             .tolist()
         )
 
-    b2b_cc_list = extract_shipper_ids(b2b_cc_categories)
-    fsbd_list = extract_shipper_ids(fsbd_categories)
-    aggregator_list = extract_shipper_ids(aggregator_categories)
-    bd_list = extract_shipper_ids(bd_categories)
+    b2b_cc_list = extract_shipper_ids(df["Type"].isin(b2b_cc_categories))
+    fsbd_list = extract_shipper_ids(df["Type"].str.contains("fsbd|aggregator", case=False, na=False))
+    aggregator_list = extract_shipper_ids(df["Type"].str.contains("aggregator", case=False, na=False))
+    bd_list = extract_shipper_ids(df["Type"].str.contains("fsbd", case=False, na=False))
 
     print(f"Total b2b_cc_list: {len(b2b_cc_list)} | sample: {b2b_cc_list[:5]}")
     print(f"Total fsbd_list: {len(fsbd_list)} | sample: {fsbd_list[:5]}")
@@ -159,16 +158,7 @@ def build_runtime_from_param_table(
     for _, row in work.iterrows():
         key = row[filter_col]
         raw_val = row[segment_col]
-
-        if pd.isna(raw_val) or str(raw_val).strip() == "":
-            runtime[key] = None
-            continue
-
-        try:
-            num = float(raw_val)
-            runtime[key] = int(num) if num.is_integer() else num
-        except ValueError:
-            runtime[key] = str(raw_val).strip()
+        runtime[key] = normalize_scalar(raw_val)
 
     return runtime
 
@@ -267,12 +257,9 @@ def build_hub_whitelist():
 def build_cutoff_runtime():
     print("\n[5/8] Read Cutoff params...")
 
-    values = read_vertical_values(
+    values = build_sheet_value_list(
         GSHEET["param_metabase"]["sheet_id"],
         GSHEET["param_metabase"]["tabs"]["param_cutoff"],
-        start_row=2,
-        end_row=6,
-        col="B",
     )
 
     if len(values) < 5:
@@ -291,15 +278,25 @@ def build_cutoff_runtime():
 def build_assignment_runtime():
     print("\n[6/8] Read Assignment params...")
 
-    values = read_vertical_values(
+    df = read_sheet(
         GSHEET["param_metabase"]["sheet_id"],
         GSHEET["param_metabase"]["tabs"]["param_assignment"],
-        start_row=2,
-        end_row=25,
-        col="B",
     )
 
-    keys = [
+    print(f"Assignment shape: {df.shape}")
+    print(f"Assignment columns: {df.columns.tolist()}")
+
+    key_col = get_column_name(df, ["Filter Name", "Parameter"])
+    value_col = get_column_name(df, ["Value"])
+
+    runtime = {}
+    for _, row in df[[key_col, value_col]].iterrows():
+        key = str(row[key_col]).strip()
+        if not key:
+            continue
+        runtime[key] = normalize_scalar(row[value_col])
+
+    expected_keys = [
         "lt_hour_scheduled_cutoff_1",
         "lt_hour_scheduled_cutoff_2",
         "lt_hour_scheduled_cutoff_3",
@@ -326,23 +323,20 @@ def build_assignment_runtime():
         "lt_grace_period_day_cutoff_4",
     ]
 
-    if len(values) < len(keys):
-        raise ValueError(f"Assignment values kurang. Expected {len(keys)}, got {len(values)}")
+    missing = [k for k in expected_keys if k not in runtime]
+    if missing:
+        raise ValueError(f"Assignment param belum lengkap, missing keys: {missing}")
 
-    runtime = dict(zip(keys, values[:len(keys)]))
-    print("Assignment runtime sample:", {k: runtime[k] for k in keys[:4]})
+    print("Assignment runtime sample:", {k: runtime[k] for k in expected_keys[:4]})
     return runtime
 
 
 def build_target_runtime():
     print("\n[7/8] Read Target params...")
 
-    values = read_vertical_values(
+    values = build_sheet_value_list(
         GSHEET["param_metabase"]["sheet_id"],
         GSHEET["param_metabase"]["tabs"]["param_target"],
-        start_row=2,
-        end_row=10,
-        col="B",
     )
 
     keys = [
@@ -375,15 +369,13 @@ def build_address_id_list():
         GSHEET["param_metabase"]["tabs"]["param_exclude_address"],
     )
 
-    df.columns = df.columns.astype(str).str.strip()
+    print(f"Exclude Address shape: {df.shape}")
+    print(f"Exclude Address columns: {df.columns.tolist()}")
 
-    if "Address ID" not in df.columns:
-        raise ValueError(
-            f"Kolom 'Address ID' tidak ditemukan. Available: {df.columns.tolist()}"
-        )
+    address_col = get_column_name(df, ["Address ID"])
 
     address_id_list = (
-        pd.to_numeric(df["Address ID"], errors="coerce")
+        pd.to_numeric(df[address_col], errors="coerce")
         .dropna()
         .astype(int)
         .drop_duplicates()
