@@ -449,24 +449,66 @@ METABASE_CONFIG = {
             "url": "https://metabase.ninjavan.co/question/99742/query/json",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
-                {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
-            ],
+                {"id": "177476c2-e00a-40d1-b133-a52d21917162", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "start_ready_datetime"]]},
+        {"id": "36571bdd-01cb-4c49-b3b0-8423d4111475", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "end_ready_datetime"]]},
+        {"id": "b8c4d58d-4c6d-4fba-88d0-a8092a5d438f", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+        {"id": "1113fbec-63bb-4a28-a5e6-c5ed90ec85e5", "type": "string/=", "value": ["Central Java", "East Java", "Greater Jakarta", "West Java"], "target": ["dimension",["template-tag","assigned_region"]]},
+        {"id": "ffc48f18-04a7-4a4f-93a5-b44724a988d3", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "exclude_courier_type_mitra"]]},
+        {"id": "a666970b-4faa-4498-a86b-25dc9fca166c", "type": "category", "value": ["Core"], "target": ["variable", ["template-tag", "pickup_by"]]},
+        {"id": "aaf4e5d9-2fda-40b6-b06b-189a8a057cfd", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+
+        {"id": "121a1b50-8ac8-4063-9141-c3d5ae848c93", "type": "category", "value": assignment_value[0], "target": ["variable", ["template-tag", "lt_hour_scheduled_cutoff_1"]]},
+        {"id": "58418b60-66e1-40dd-b3da-a84859b4060a", "type": "category", "value": assignment_value[1], "target": ["variable", ["template-tag", "lt_hour_scheduled_cutoff_2"]]},
+        {"id": "250780cd-1cbc-4d3a-a474-c6ee4ab76aa2", "type": "category", "value": assignment_value[2], "target": ["variable", ["template-tag", "lt_hour_scheduled_cutoff_3"]]},
+        {"id": "67c22eb2-7960-483b-8971-960197e6ae2c", "type": "category", "value": assignment_value[3], "target": ["variable", ["template-tag", "lt_hour_scheduled_cutoff_4"]]},
+
+        {"id": "65eff729-6929-4f7d-8228-a4be53e73c3b", "type": "category", "value": assignment_value[4], "target": ["variable", ["template-tag", "lt_hour_after_creation_cutoff_1"]]},
+        {"id": "6465e475-f93e-419f-8299-587ad49affad", "type": "category", "value": assignment_value[5], "target": ["variable", ["template-tag", "lt_hour_after_creation_cutoff_2"]]},
+        {"id": "91d0d421-a736-497d-97d9-5c2106cda478", "type": "category", "value": assignment_value[6], "target": ["variable", ["template-tag", "lt_hour_after_creation_cutoff_3"]]},
+        {"id": "1c1c241e-da8d-49c1-a236-54a71050c781", "type": "category", "value": assignment_value[7], "target": ["variable", ["template-tag", "lt_hour_after_creation_cutoff_4"]]},
+
+        {"id": "a3c7c85c-3611-44e8-8bf3-a606a707eb0c", "type": "number/=", "value": assignment_value[8], "target": ["variable", ["template-tag", "start_rsvn_creation_cutoff_1"]]},
+        {"id": "74392b19-15c2-4a72-a1d1-21208d46d1b0", "type": "number/=", "value": assignment_value[9], "target": ["variable", ["template-tag", "start_rsvn_creation_cutoff_2"]]},
+        {"id": "530bf042-7530-45b3-8c6e-7c442295991d", "type": "number/=", "value": assignment_value[10], "target": ["variable", ["template-tag", "start_rsvn_creation_cutoff_3"]]},
+        {"id": "1ff0e147-834d-457e-b168-5ed5c7396344", "type": "number/=", "value": assignment_value[11], "target": ["variable", ["template-tag", "start_rsvn_creation_cutoff_4"]]},
+
+        {"id": "9e054dbc-b16a-4cda-8162-709b0dcd1b53", "type": "number/=", "value": assignment_value[12], "target": ["variable", ["template-tag", "end_rsvn_creation_cutoff_1"]]},
+        {"id": "2e995bac-4d31-4d40-8b6a-f462b33aad75", "type": "number/=", "value": assignment_value[13], "target": ["variable", ["template-tag", "end_rsvn_creation_cutoff_2"]]},
+        {"id": "dfc84362-ba4c-48e1-9719-47e9b6ea6054", "type": "number/=", "value": assignment_value[14], "target": ["variable", ["template-tag", "end_rsvn_creation_cutoff_3"]]},
+        {"id": "2bd27d40-1cfe-4036-91cc-5d7b8051b556", "type": "number/=", "value": assignment_value[15], "target": ["variable", ["template-tag", "end_rsvn_creation_cutoff_4"]]},
+
+        {"id": "dbf8504d-c2f3-45d5-b978-e0f347847368", "type": "category", "value": assignment_value[16], "target": ["variable", ["template-tag", "lt_type_cutoff_1"]]},
+        {"id": "55b6e513-416a-4745-8e7c-9297e2eb4a46", "type": "category", "value": assignment_value[17], "target": ["variable", ["template-tag", "lt_type_cutoff_2"]]},
+        {"id": "0b7dc1a3-cd32-4c70-959b-9f9450e07456", "type": "category", "value": assignment_value[18], "target": ["variable", ["template-tag", "lt_type_cutoff_3"]]},
+        {"id": "6fa92d2c-f48c-436d-913b-1b380227315f", "type": "category", "value": assignment_value[19], "target": ["variable", ["template-tag", "lt_type_cutoff_4"]]},
+
+        {"id": "57535593-3654-4b0c-85a7-f58c33aad2b8", "type": "category", "value": assignment_value[20], "target": ["variable", ["template-tag", "lt_grace_period_day_cutoff_1"]]},
+        {"id": "a0df0bb1-a194-497d-808b-e8cb872aaa12", "type": "category", "value": assignment_value[21], "target": ["variable", ["template-tag", "lt_grace_period_day_cutoff_2"]]},
+        {"id": "9c65579f-6aa3-4166-98fd-232012701551", "type": "category", "value": assignment_value[22], "target": ["variable", ["template-tag", "lt_grace_period_day_cutoff_3"]]},
+        {"id": "19087b6e-634d-4a52-847a-c17c5ab800bd", "type": "category", "value": assignment_value[23], "target": ["variable", ["template-tag", "lt_grace_period_day_cutoff_4"]]},
+        {"id": "c6de76aa-bf15-4b28-897f-801612de63d2", "type": "number/=", "value": [0], "target": ["variable", ["template-tag", "rot_assign_cutoff_hour"]]},
+        {"id": "23f6960c-e4a8-440c-b7c2-8463d99c9031", "type": "number/=", "value": [0], "target": ["variable", ["template-tag", "rot_remove_cutoff_hour"]]}
+    ]
         },
 
-        # =====================================================
-        # 4W PRODUCTIVITY
-        # common param only
-        # =====================================================
         "four_w_productivity": {
-            "url": "PASTE_URL_4W_PRODUCTIVITY",
+            "url": "https://metabase.ninjavan.co/question/99900/query/json",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
-                {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
-            ],
+                {"id": "0ddfdd63-4858-404f-9391-4c0a6f3c77ea", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "sph_flag"]]},
+                {"id": "eb91b326-11ef-4c9b-8a86-c09184c3c5e7", "type": "number/=", "value": target_value[0], "target": ["variable", ["template-tag", "4w_gj_target"]]},
+                {"id": "4fbb553b-55fd-46c2-ae34-ebcb2163e214", "type": "number/=", "value": target_value[1], "target": ["variable", ["template-tag", "4w_wj_target"]]},
+                {"id": "6c19c33b-a5e9-48c7-8a1c-b139333e568a", "type": "number/=", "value": target_value[2], "target": ["variable", ["template-tag", "4w_cj_target"]]},
+                {"id": "06fa8173-3e61-488e-b149-a2d398a9fa63", "type": "number/=", "value": target_value[3], "target": ["variable", ["template-tag", "4w_ej_target"]]},
+        {"id": "f446e2fb-0e69-49ef-b18b-d66cbeb01526", "type": "number/=", "value": target_value[4], "target": ["variable", ["template-tag", "2w_gj_target"]]},
+        {"id": "7ec8a31e-1a9f-42e5-9cf2-5e5dec9722cb", "type": "number/=", "value": target_value[5], "target": ["variable", ["template-tag", "2w_wj_target"]]},
+        {"id": "d8866130-3fe4-4095-9384-bb6b8ec29a14", "type": "number/=", "value": target_value[6], "target": ["variable", ["template-tag", "2w_cj_target"]]},
+        {"id": "1f329f60-9dfe-47eb-92dc-02e3de8860eb", "type": "number/=", "value": target_value[7], "target": ["variable", ["template-tag", "2w_ej_target"]]},
+        {"id": "ded95caf-a5b4-42e4-977f-f4dda31b516d", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+        {"id": "e84c7565-cb41-4f04-9b14-0bce69655758", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+        {"id": "253b3b7f-bf13-4e3b-a7c8-7bf40655feaa", "type": "date/all-options", "value": period_str, "target": ["dimension", ["template-tag", "attempt_date"]]},
+        {"id": "07126788-e4f1-4fb6-8f8d-5ba18d51d884", "type": "string/=", "value": ["East Java", "Central Java", "Greater Jakarta", "West Java"], "target": ["dimension", ["template-tag", "hub_region"]]}
+    ]
         },
     }
 }
