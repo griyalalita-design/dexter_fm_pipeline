@@ -114,7 +114,7 @@ GSHEET = {
         "tabs": {
             "param_assignment": "Assignment",
             "param_poh": "POH",
-            "param_poh_type_shipper": "POH type shipper",
+            "param_poh_type_shipper": "POH per Shipper Type",
             "param_cutoff": "Cutoff",
             "param_target": "Target",
             "param_whitelist_hub_itv": "Whitelist Hub ITV",
