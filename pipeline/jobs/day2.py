@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from utils.metabase import tarik_metabase, get_token
-from utils.gsheet import read_sheet
+from utils.gsheet import read_sheet, get_cell_value
 from config.settings import METABASE_CONFIG, GSHEET
 
 
@@ -20,20 +20,54 @@ def get_previous_month_period():
     )
 
 
+def normalize_scalar(value):
+    while isinstance(value, list) and len(value) == 1:
+        value = value[0]
+
+    if value is None:
+        return None
+
+    try:
+        if pd.isna(value):
+            return None
+    except Exception:
+        pass
+
+    text = str(value).strip()
+    if text == "":
+        return None
+
+    try:
+        num = float(text)
+        return int(num) if num.is_integer() else num
+    except ValueError:
+        return text
+
+
+def read_vertical_values(sheet_id, tab_name, start_row, end_row, col="B"):
+    values = []
+    for row in range(start_row, end_row + 1):
+        val = get_cell_value(
+            sheet_id=sheet_id,
+            tab_name=tab_name,
+            cell=f"{col}{row}",
+        )
+        values.append(normalize_scalar(val))
+    return values
+
+
 def render_params(param_templates, runtime_values):
     rendered = []
 
     for param in param_templates:
         p = copy.deepcopy(param)
 
-        # preferred style: value_key
         if "value_key" in p:
             key = p.pop("value_key")
             if key not in runtime_values:
                 raise KeyError(f"runtime_values tidak punya key: {key}")
             p["value"] = runtime_values[key]
 
-        # compatibility style: value = "start_date" / "b2b_cc" / etc
         elif isinstance(p.get("value"), str) and p["value"] in runtime_values:
             p["value"] = runtime_values[p["value"]]
 
@@ -43,7 +77,7 @@ def render_params(param_templates, runtime_values):
 
 
 def build_shipper_lists():
-    print("\n[1/5] Read Google Sheet key_shipper...")
+    print("\n[1/8] Read Google Sheet key_shipper...")
 
     df = read_sheet(
         GSHEET["key_shipper"]["sheet_id"],
@@ -67,48 +101,38 @@ def build_shipper_lists():
         "B2B Sameday Reguler",
         "B2B Sameday Premium",
     ]
-
     fsbd_categories = [
         "FSBD Key Shipper",
         "Aggregator Keyshipper",
     ]
-
+    aggregator_categories = [
+        "Aggregator Keyshipper",
+    ]
     bd_categories = [
-        "FSBD Key Shipper"
+        "FSBD Key Shipper",
     ]
 
-    b2b_cc_list = (
-        pd.to_numeric(df[df["Type"].isin(b2b_cc_categories)]["Shipper ID"], errors="coerce")
-        .dropna()
-        .astype(int)
-        .astype(str)
-        .drop_duplicates()
-        .tolist()
-    )
+    def extract_shipper_ids(type_list):
+        return (
+            pd.to_numeric(df[df["Type"].isin(type_list)]["Shipper ID"], errors="coerce")
+            .dropna()
+            .astype(int)
+            .astype(str)
+            .drop_duplicates()
+            .tolist()
+        )
 
-    fsbd_list = (
-        pd.to_numeric(df[df["Type"].isin(fsbd_categories)]["Shipper ID"], errors="coerce")
-        .dropna()
-        .astype(int)
-        .astype(str)
-        .drop_duplicates()
-        .tolist()
-    )
-
-    bd_list = (
-        pd.to_numeric(df[df["Type"].isin(bd_categories)]["Shipper ID"], errors="coerce")
-        .dropna()
-        .astype(int)
-        .astype(str)
-        .drop_duplicates()
-        .tolist()
-    )
+    b2b_cc_list = extract_shipper_ids(b2b_cc_categories)
+    fsbd_list = extract_shipper_ids(fsbd_categories)
+    aggregator_list = extract_shipper_ids(aggregator_categories)
+    bd_list = extract_shipper_ids(bd_categories)
 
     print(f"Total b2b_cc_list: {len(b2b_cc_list)} | sample: {b2b_cc_list[:5]}")
     print(f"Total fsbd_list: {len(fsbd_list)} | sample: {fsbd_list[:5]}")
-    print(f"Total fsbd_list: {len(bd_list)} | sample: {bd_list[:5]}")
+    print(f"Total aggregator_list: {len(aggregator_list)} | sample: {aggregator_list[:5]}")
+    print(f"Total bd_list: {len(bd_list)} | sample: {bd_list[:5]}")
 
-    return b2b_cc_list, fsbd_list, bd_list
+    return b2b_cc_list, fsbd_list, aggregator_list, bd_list
 
 
 def build_runtime_from_param_table(
@@ -116,10 +140,6 @@ def build_runtime_from_param_table(
     segment_col: str,
     filter_col: str = "Filter Name",
 ) -> dict:
-    """
-    Param table format:
-    Filter Name | B2BR | FSBD | Tiktok
-    """
     df.columns = df.columns.astype(str).str.strip()
 
     required_cols = [filter_col, segment_col]
@@ -154,7 +174,7 @@ def build_runtime_from_param_table(
 
 
 def build_poh_runtime_by_segment():
-    print("\n[2/5] Read POH parameter table...")
+    print("\n[2/8] Read POH parameter table...")
 
     df_poh = read_sheet(
         GSHEET["param_metabase"]["sheet_id"],
@@ -169,6 +189,214 @@ def build_poh_runtime_by_segment():
         "poh_fsbd": build_runtime_from_param_table(df_poh, "FSBD"),
         "poh_tiktok": build_runtime_from_param_table(df_poh, "Tiktok"),
     }
+
+
+def build_driver_list():
+    print("\n[3/8] Read Driver Type...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_driver_type"],
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    required_cols = ["Function", "Driver Type"]
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        raise ValueError(
+            f"Kolom tidak ditemukan di Driver Type sheet: {missing}. "
+            f"Available: {df.columns.tolist()}"
+        )
+
+    df_fm = df[df["Function"].astype(str).str.strip() == "FM"]
+
+    driver_list = (
+        df_fm["Driver Type"]
+        .dropna()
+        .astype(str)
+        .str.strip()
+        .loc[lambda s: s != ""]
+        .drop_duplicates()
+        .tolist()
+    )
+
+    print(f"Total driver_list: {len(driver_list)} | sample: {driver_list[:5]}")
+    return driver_list
+
+
+def build_hub_whitelist():
+    print("\n[4/8] Read Hub Whitelist ITV...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_whitelist_hub_itv"],
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    required_cols = ["Description", "Hub Name"]
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        raise ValueError(
+            f"Kolom tidak ditemukan di Whitelist Hub ITV: {missing}. "
+            f"Available: {df.columns.tolist()}"
+        )
+
+    df["Description"] = df["Description"].astype(str).str.strip()
+
+    def get_list(desc):
+        result = (
+            df[df["Description"].eq(desc)]["Hub Name"]
+            .dropna()
+            .astype(str)
+            .str.strip()
+            .loc[lambda s: s != ""]
+            .drop_duplicates()
+            .tolist()
+        )
+        print(f"Total {desc}: {len(result)} | sample: {result[:5]}")
+        return result
+
+    return {
+        "hub_whitelist1": get_list("Whitelist Hub1"),
+        "hub_whitelist2": get_list("Whitelist Hub2"),
+    }
+
+
+def build_cutoff_runtime():
+    print("\n[5/8] Read Cutoff params...")
+
+    values = read_vertical_values(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_cutoff"],
+        start_row=2,
+        end_row=6,
+        col="B",
+    )
+
+    if len(values) < 5:
+        raise ValueError(f"Cutoff values kurang dari 5 row: {values}")
+
+    runtime = {
+        "base_cutoff": values[2],
+        "cutoff1": values[3],
+        "cutoff2": values[4],
+    }
+
+    print("Cutoff runtime:", runtime)
+    return runtime
+
+
+def build_assignment_runtime():
+    print("\n[6/8] Read Assignment params...")
+
+    values = read_vertical_values(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_assignment"],
+        start_row=2,
+        end_row=25,
+        col="B",
+    )
+
+    keys = [
+        "lt_hour_scheduled_cutoff_1",
+        "lt_hour_scheduled_cutoff_2",
+        "lt_hour_scheduled_cutoff_3",
+        "lt_hour_scheduled_cutoff_4",
+        "lt_hour_after_creation_cutoff_1",
+        "lt_hour_after_creation_cutoff_2",
+        "lt_hour_after_creation_cutoff_3",
+        "lt_hour_after_creation_cutoff_4",
+        "start_rsvn_creation_cutoff_1",
+        "start_rsvn_creation_cutoff_2",
+        "start_rsvn_creation_cutoff_3",
+        "start_rsvn_creation_cutoff_4",
+        "end_rsvn_creation_cutoff_1",
+        "end_rsvn_creation_cutoff_2",
+        "end_rsvn_creation_cutoff_3",
+        "end_rsvn_creation_cutoff_4",
+        "lt_type_cutoff_1",
+        "lt_type_cutoff_2",
+        "lt_type_cutoff_3",
+        "lt_type_cutoff_4",
+        "lt_grace_period_day_cutoff_1",
+        "lt_grace_period_day_cutoff_2",
+        "lt_grace_period_day_cutoff_3",
+        "lt_grace_period_day_cutoff_4",
+    ]
+
+    if len(values) < len(keys):
+        raise ValueError(f"Assignment values kurang. Expected {len(keys)}, got {len(values)}")
+
+    runtime = dict(zip(keys, values[:len(keys)]))
+    print("Assignment runtime sample:", {k: runtime[k] for k in keys[:4]})
+    return runtime
+
+
+def build_target_runtime():
+    print("\n[7/8] Read Target params...")
+
+    values = read_vertical_values(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_target"],
+        start_row=2,
+        end_row=10,
+        col="B",
+    )
+
+    keys = [
+        "4w_gj_target",
+        "4w_wj_target",
+        "4w_cj_target",
+        "4w_ej_target",
+        "2w_gj_target",
+        "2w_wj_target",
+        "2w_cj_target",
+        "2w_ej_target",
+        "target_value",
+    ]
+
+    if len(values) < len(keys):
+        raise ValueError(f"Target values kurang. Expected {len(keys)}, got {len(values)}")
+
+    runtime = dict(zip(keys, values[:len(keys)]))
+    runtime["target_pdv"] = runtime["target_value"]
+
+    print("Target runtime:", runtime)
+    return runtime
+
+
+def build_address_id_list():
+    print("\n[8/8] Read Exclude Address...")
+
+    df = read_sheet(
+        GSHEET["param_metabase"]["sheet_id"],
+        GSHEET["param_metabase"]["tabs"]["param_exclude_address"],
+    )
+
+    df.columns = df.columns.astype(str).str.strip()
+
+    if "Address ID" not in df.columns:
+        raise ValueError(
+            f"Kolom 'Address ID' tidak ditemukan. Available: {df.columns.tolist()}"
+        )
+
+    address_id_list = (
+        pd.to_numeric(df["Address ID"], errors="coerce")
+        .dropna()
+        .astype(int)
+        .drop_duplicates()
+        .tolist()
+    )
+
+    if not address_id_list:
+        print("WARNING: ADDRESS_ID list kosong!")
+
+    print(f"total address_id: {len(address_id_list)}")
+    print(f"address_id_list sample: {address_id_list[:5]}")
+
+    return address_id_list
 
 
 def run_report(report_key, runtime_values, token, segment_key=None):
@@ -216,162 +444,72 @@ def should_skip_report(report_key):
     return not url or "PASTE_" in url
 
 
-def build_driver_list():
-    print("\n[2/5] Read Driver List from param_metabase...")
-
-    df = read_sheet(
-        GSHEET["param_metabase"]["sheet_id"],
-        GSHEET["param_metabase"]["tabs"]["param_driver_type"],  # pastikan key ini ada di settings
-    )
-
-    df.columns = df.columns.astype(str).str.strip()
-
-    required_cols = ["Function", "Driver Type"]
-    missing = [c for c in required_cols if c not in df.columns]
-    if missing:
-        raise ValueError(
-            f"Kolom tidak ditemukan di Driver Type sheet: {missing}. "
-            f"Available: {df.columns.tolist()}"
-        )
-
-    # ✅ ambil hanya FM
-    df_fm = df[df["Function"].astype(str).str.strip() == "FM"]
-
-    driver_list = (
-        df_fm["Driver Type"]
-        .dropna()
-        .astype(str)
-        .str.strip()
-        .loc[lambda s: s != ""]
-        .drop_duplicates()
-        .tolist()
-    )
-
-    print(f"Total driver_list: {len(driver_list)} | sample: {driver_list[:5]}")
-
-    return driver_list
-
-def build_hub_whitelist():
-    print("\n[2/5] Read Hub Whitelist ITV from param_metabase...")
-
-    df = read_sheet(
-        GSHEET["param_metabase"]["sheet_id"],
-        GSHEET["param_metabase"]["tabs"]["param_whitelist_hub_itv"],
-    )
-
-    df.columns = df.columns.astype(str).str.strip()
-
-    required_cols = ["Description", "Hub Name"]
-    missing = [c for c in required_cols if c not in df.columns]
-    if missing:
-        raise ValueError(
-            f"Kolom tidak ditemukan di Whitelist Hub ITV: {missing}. "
-            f"Available: {df.columns.tolist()}"
-        )
-
-    df["Description"] = df["Description"].astype(str).str.strip()
-
-    def get_list(desc):
-        result = (
-            df[df["Description"].eq(desc)]["Hub Name"]
-            .dropna()
-            .astype(str)
-            .str.strip()
-            .loc[lambda s: s != ""]
-            .drop_duplicates()
-            .tolist()
-        )
-
-        if not result:
-            print(f"WARNING: {desc} list kosong!")
-
-        print(f"Total {desc}: {len(result)} | sample: {result[:5]}")
-        return result
-
-    return {
-        "hub_whitelist1": get_list("Whitelist Hub1"),
-        "hub_whitelist2": get_list("Whitelist Hub2"),
-    }
-
-def build_cutoff_runtime():
-    print("\n[2/5] Read Cutoff params from param_metabase...")
-
-    df = read_sheet(
-        GSHEET["param_metabase"]["sheet_id"],
-        GSHEET["param_metabase"]["tabs"]["param_cutoff"],
-    )
-
-    df.columns = df.columns.astype(str).str.strip()
-
-    # Ambil kolom kedua kalau formatnya mirip: Description | Value
-    value_col = df.columns[1]
-
-    cutoff_values = (
-        df[value_col]
-        .dropna()
-        .astype(str)
-        .str.strip()
-        .loc[lambda s: s != ""]
-        .tolist()
-    )
-
-    if len(cutoff_values) < 5:
-        raise ValueError(f"Cutoff values kurang dari 5 row. Current: {cutoff_values}")
-
-    def to_number(x):
-        num = float(x)
-        return int(num) if num.is_integer() else num
-
-    return {
-        "base_cutoff": to_number(cutoff_values[2]),
-        "cutoff1": to_number(cutoff_values[3]),
-        "cutoff2": to_number(cutoff_values[4]),
-    }
-
 def run():
     print("=== FM DAY 2 START ===")
 
     start_date, end_date = get_previous_month_period()
-    print(f"\n[0/5] Period: {start_date} to {end_date}")
+    period_str = f"{start_date}~{end_date}"
+    print(f"\n[0/8] Period: {start_date} to {end_date}")
 
-    print("\n[1/5] Get Metabase token...")
+    print("\n[1/8] Get Metabase token...")
     token = get_token()
     print("Token loaded:", bool(token))
 
-    b2b_cc_list, fsbd_list, bd_list = build_shipper_lists()
+    b2b_cc_list, fsbd_list, aggregator_list, bd_list = build_shipper_lists()
     poh_runtime_map = build_poh_runtime_by_segment()
     driver_list = build_driver_list()
     hub_whitelist = build_hub_whitelist()
-    cut_off= build_cutoff_runtime()
+    cutoff_runtime = build_cutoff_runtime()
+    assignment_runtime = build_assignment_runtime()
+    target_runtime = build_target_runtime()
+    address_id_list = build_address_id_list()
 
     base_runtime_values = {
         "start_date": start_date,
         "end_date": end_date,
+        "period_str": period_str,
+        "start_end": start_date,
+        "end_end": end_date,
         "b2b_cc": b2b_cc_list,
         "fsbd": fsbd_list,
         "bd_shipper": bd_list,
+        "aggregator": aggregator_list,
         "driver_list": driver_list,
+        "driver_type": driver_list,
         "hub_whitelist1": hub_whitelist["hub_whitelist1"],
         "hub_whitelist2": hub_whitelist["hub_whitelist2"],
-        "period_str": f"{start_date}~{end_date}"
+        "address_id_list": address_id_list,
         **cutoff_runtime,
+        **assignment_runtime,
+        **target_runtime,
     }
 
     results = {}
 
-    # report yang sekarang sudah beneran kamu isi
     fm_report_plan = [
-        {"report_key": "poh_b2b_cc", "poh_runtime_key": "poh_b2b_cc"},
-        {"report_key": "poh_fsbd", "poh_runtime_key": "poh_fsbd"},
-        {"report_key": "poh_tiktok", "poh_runtime_key": "poh_tiktok"},
+        {"report_key": "poh_b2b_cc", "runtime_patch_key": "poh_b2b_cc"},
+        {"report_key": "poh_fsbd", "runtime_patch_key": "poh_fsbd"},
+        {"report_key": "poh_tiktok", "runtime_patch_key": "poh_tiktok"},
         {"report_key": "no_success_rate_shopee_laz_tt_bd"},
-        {"report_key": "no_rsvn_completed_key_shipper"},
+        {"report_key": "no_rsvn_completed_b2b_cc"},
+        {"report_key": "no_attempt_rate_key_shipper"},
+        {"report_key": "pst_itv", "segment_key": "b2b_cc"},
+        {"report_key": "pst_itv", "segment_key": "fsbd"},
+        {"report_key": "rot"},
+        {"report_key": "lnd"},
+        {"report_key": "popa_validity", "segment_key": "lazada"},
+        {"report_key": "popa_validity", "segment_key": "aggregator"},
+        {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
+        {"report_key": "assign_inaccuracy"},
+        {"report_key": "assign_streamline"},
+        {"report_key": "four_w_productivity"},
     ]
 
-    print("\n[4/5] Pull FM Metabase reports...")
+    print("\n[FINAL] Pull FM Metabase reports...")
 
     for item in fm_report_plan:
         report_key = item["report_key"]
+        segment_key = item.get("segment_key")
 
         if report_key not in METABASE_CONFIG["fm"]:
             print(f"SKIP {report_key}: tidak ada di METABASE_CONFIG['fm']")
@@ -383,22 +521,23 @@ def run():
 
         runtime_values = base_runtime_values.copy()
 
-        # inject POH parameter sesuai kolom B2BR / FSBD / Tiktok
-        if "poh_runtime_key" in item:
-            runtime_values.update(poh_runtime_map[item["poh_runtime_key"]])
+        if "runtime_patch_key" in item:
+            runtime_values.update(poh_runtime_map[item["runtime_patch_key"]])
 
-        results[report_key] = run_report(
+        result_name = f"{report_key}_{segment_key}" if segment_key else report_key
+
+        results[result_name] = run_report(
             report_key=report_key,
             runtime_values=runtime_values,
             token=token,
+            segment_key=segment_key,
         )
 
-    print("\n[5/5] Summary result shapes:")
+    print("\nSummary result shapes:")
     for key, df in results.items():
         print(f"- {key}: {df.shape}")
 
     print("\n=== FM DAY 2 DONE ===")
-
     return results
 
 
