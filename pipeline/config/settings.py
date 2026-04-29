@@ -43,6 +43,7 @@ GSHEET = {
         "no_rsvn_completed_b2b_all_b2c_cold": "N0 RSVN Completed B2B All & B2C Cold",
         "no_attempt_rate_keyshipper": "N0 Attempt Rate Keyshipper",
         "pst_itv_keyshipper": "PST ITV Keyshipper",
+        "pst_itv_b2b_all_b2c_cold": "PST ITV B2B All & B2C Cold",
         "rot_b2b_all_b2c_cold": "RoT B2B All & B2C Cold",
         "popa_validity_lazada": "POPA Validity Lazada",
         "popa_validity_aggregator": "POPA Validity Aggregator",
@@ -59,12 +60,12 @@ GSHEET = {
     # isi range sendiri nanti
     "clear_ranges": {
         "pu_to_poh_msh_keyshipper": ["A3:H"],
-        "pu_to_poh_msh_non_keyshipper": ["A3:H"],
         "pu_to_poh_msh_b2b_all_b2c_cold": ["A3:H"],
         "no_success_rate_rts_shopee_laz_other": ["A3:F"],
         "no_rsvn_completed_b2b_all_b2c_cold": ["A3:D"],
         "no_attempt_rate_keyshipper": ["A3:D"],
         "pst_itv_keyshipper": ["A3:D"],
+        "pst_itv_b2b_all_b2c_cold":["A3:D"],
         "rot_b2b_all_b2c_cold": ["A3:D"],
         "popa_validity_lazada": ["A3:F"],
         "popa_validity_aggregator": ["A3:F"],
