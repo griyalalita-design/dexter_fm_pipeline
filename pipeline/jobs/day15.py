@@ -13,29 +13,18 @@ def run():
         source_range="Q3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        dest_start_cell="C4:J",
+        dest_start_cell="C4",
     )
     print("===== PU to PoH MSH Keyshipper -> Tracker Done =====")
-
-    # PU to PoH MSH Non Keyshipper -> Tracker
-    copy_range(
-        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_non_keyshipper"],
-        source_range="Q3:X",
-        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        dest_start_cell="Q4:X",
-    )
-    print("===== PU to PoH MSH Non Keyshipper -> Tracker Done =====")
 
     # PU to PoH MSH B2B All & B2C Cold -> Tracker
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_b2b_all_b2c_cold"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="Q3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="Q4",
     )
     print("===== PU to PoH MSH B2B All & B2C Cold -> Tracker Done =====")
 
@@ -43,10 +32,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["no_success_rate_rts_shopee_laz_other"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="P3:U",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="AC4",
     )
     print("===== N0 Success Rate RTS Shopee, Laz, Other -> Tracker Done =====")
 
@@ -54,10 +43,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["no_rsvn_completed_b2b_all_b2c_cold"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="M3:P,
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="AL4",
     )
     print("===== N0 RSVN Completed B2B All & B2C Cold -> Tracker Done =====")
 
@@ -65,10 +54,10 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["no_attempt_rate_keyshipper"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="M3:P",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab="TODO_DEST_TAB",
-        dest_start_cell="TODO_DEST_START_CELL",
+        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        dest_start_cell="AT4",
     )
     print("===== N0 Attempt Rate Keyshipper -> Tracker Done =====")
 
