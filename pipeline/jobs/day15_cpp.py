@@ -4,7 +4,7 @@ from config.settings import GSHEET
 
 
 def run():
-    print("===== Kita Mulai Run Day 10 CPP =====")
+    print("===== Kita Mulai Run Day 15 CPP =====")
 
     df_cpp = read_sheet(
         GSHEET["cpp"]["sheet_id"],
@@ -23,15 +23,15 @@ def run():
     )
     print("===== Input Data ke Tracker Done =====")
 
-    print("===== Input CPP ke Sanggahan =====")
-    write_sheet(
-        spreadsheet_id=GSHEET["sanggahan"]["sheet_id"],
-        sheet_name=GSHEET["sanggahan"]["tabs"]["cpp"],
-        df=df_cpp,
-        start_cell="A3",
-        include_header=False
-    )
-    print("===== Input CPP ke Sanggahan Done =====")
+    # print("===== Input CPP ke Sanggahan =====")
+    # write_sheet(
+    #     spreadsheet_id=GSHEET["sanggahan"]["sheet_id"],
+    #     sheet_name=GSHEET["sanggahan"]["tabs"]["cpp"],
+    #     df=df_cpp,
+    #     start_cell="A3",
+    #     include_header=False
+    # )
+    # print("===== Input CPP ke Sanggahan Done =====")
 
 
 if __name__ == "__main__":
