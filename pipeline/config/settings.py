@@ -408,22 +408,23 @@ METABASE_CONFIG = {
             "url": "https://metabase.ninjavan.co/api/card/122267/query/json",
             "report_type": "fm",
             "common_params_template": [
-                {"id": "PASTE_START_DATE_ID", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "START_DATE"]]},
-                {"id": "PASTE_END_DATE_ID", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag", "END_DATE"]]},
-                {"id": "PASTE_AGGR_ID", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "353d7399-af47-4a79-ac23-e11d11ebc918", "type": "string/=", "value": "driver_list", "target": ["dimension", ["template-tag", "courier_type"]]},
+                {"id": "656b69d2-6530-48a7-80fb-a2565c2b4735", "type": "category", "value": ["Core"], "target": ["variable", ["template-tag", "pickup_by"]]},
+                {"id": "11c97a25-3f02-42ad-98e5-166f97a255f0", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+                {"id": "597a35aa-1671-b4fb-23f9-46f06da60b16", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "e7680960-c1c8-477d-8686-0a038fc680a8", "type": "date/all-options", "value": "period_str", "target": ["dimension", ["template-tag", "attempt_date"]]},
+                
             ],
             "shipper_params_template": {
                 "lazada": [
-                    {"id": "PASTE_LAZADA_PARAM_ID", "type": "string/=", "value": "lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "1158f7c8-4916-47f7-af7e-4718227cf10c", "type": "string/=", "value": [341107], "target": ["dimension", ["template-tag", "parent_id_coalesce"]]},
                 ],
-                "bd": [
-                    {"id": "PASTE_BD_PARAM_ID", "type": "string/=", "value": "bd", "target": ["dimension", ["template-tag", "shipper_id"]]},
-                ],
-                "fs": [
-                    {"id": "PASTE_FS_PARAM_ID", "type": "string/=", "value": "fs", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                "aggregator": [
+                    {"id": "326bf38c-b686-4319-acef-dbb678227625", "type": "string/=", "value": "aggregator", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
                 "fsbd_lazada": [
-                    {"id": "PASTE_FSBD_LAZADA_PARAM_ID", "type": "string/=", "value": "fsbd_lazada", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "326bf38c-b686-4319-acef-dbb678227625", "type": "string/=", "value": "fsbd", "target": ["dimension", ["template-tag", "shipper_id"]]},
+                    {"id": "1158f7c8-4916-47f7-af7e-4718227cf10c", "type": "string/=", "value": [341107], "target": ["dimension", ["template-tag", "parent_id_coalesce"]]}
                 ],
             },
         },
