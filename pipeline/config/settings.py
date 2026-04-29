@@ -38,7 +38,6 @@ GSHEET = {
     "sheet_id": "1A7khbGVLlRyOlxfiRSB95LL6Os9J2SyTVpBpLsV-06w",
     "tabs": {
         "pu_to_poh_msh_keyshipper": "PU to PoH MSH Keyshipper",
-        "pu_to_poh_msh_non_keyshipper": "PU to PoH MSH Non Keyshipper",
         "pu_to_poh_msh_b2b_all_b2c_cold": "PU to PoH MSH B2B All & B2C Cold",
         "no_success_rate_rts_shopee_laz_other": "N0 Success Rate RTS Shopee, Laz, Other",
         "no_rsvn_completed_b2b_all_b2c_cold": "N0 RSVN Completed B2B All & B2C Cold",
