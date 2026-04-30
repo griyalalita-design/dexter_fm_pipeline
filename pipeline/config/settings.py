@@ -391,7 +391,7 @@ METABASE_CONFIG = {
             ],
         },
 
-        "lnd": {
+        "lnd_b2b_cc": {
             "url": "https://metabase.ninjavan.co/api/card/122271/query/json",
             "report_type": "fm",
             "common_params_template": [
@@ -406,6 +406,18 @@ METABASE_CONFIG = {
                     {"id": "6bdaad0f-d9e2-4f12-b420-f0eddaa31bb9", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
                 ],
             },
+        },
+
+        "lnd": {
+            "url": "https://metabase.ninjavan.co/api/card/122271/query/json",
+            "report_type": "fm",
+            "common_params_template": [
+                {"id": "942b232c-31f7-f535-440f-4cce5562023f", "type": "category", "value": ["month"], "target": ["variable", ["template-tag", "aggr"]]},
+                {"id": "d0c21291-d053-49f7-9012-0f975163daf8", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "is_fm_hub"]]},
+                {"id": "9a452715-48aa-6fb3-e8ff-5a5990b2ab16", "type": "date/single", "value": "start_end", "target": ["variable", ["template-tag", "start"]]},
+                {"id": "a5d4bb81-ad4f-cfbd-39c2-ea81f40f5cee", "type": "date/single", "value": "end_date", "target": ["variable", ["template-tag","end"]]},
+                {"id": "6bdaad0f-d9e2-4f12-b420-f0eddaa31bb9", "type": "string/=", "value": "b2b_cc", "target": ["dimension", ["template-tag", "shipper_id"]]},
+            ],
         },
 
         "popa_validity": {
