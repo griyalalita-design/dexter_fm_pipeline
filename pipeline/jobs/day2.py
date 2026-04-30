@@ -6,6 +6,7 @@ import pandas as pd
 from utils.metabase import tarik_metabase, get_token
 from utils.gsheet import read_sheet
 from config.settings import METABASE_CONFIG, GSHEET
+from utils.transform import pivot_aasignment_streamline, pivot_assignment_inaccuracy_user, pivot_rsvn_complete, pivot_n0_attempt_rate, pivot_rot, pivot_poh, pivot_popa_validity, pivot_sr_rts, select_lnd, select_itv, pivot_4W_productivity
 
 
 def get_previous_month_period():
@@ -531,6 +532,109 @@ def run():
     print("\nSummary result shapes:")
     for key, df in results.items():
         print(f"- {key}: {df.shape}")
+
+    print("\n[TRANSFORM] Build final outputs...")
+    final_outputs = {}
+
+    if "poh_b2b_cc" in results:
+        final_outputs["poh_b2b_cc_final"] = pivot_poh(results["poh_b2b_cc"])
+
+    if "poh_fsbd" in results:
+        final_outputs["poh_fsbd_final"] = pivot_poh(results["poh_fsbd"])
+
+    if "poh_tiktok" in results:
+        final_outputs["poh_tiktok_final"= pivot_poh(results["poh_tiktok"])
+
+    if "no_success_rate_shopee_laz_tt_bd" in results:
+        final_outputs["no_success_rate_shopee_laz_tt_bd_final"] = pivot_sr_rts(
+            results["no_success_rate_shopee_laz_tt_bd"]
+        )
+
+    if "no_rsvn_completed_b2b_cc" in results:
+        final_outputs["no_rsvn_completed_b2b_cc_final"] = pivot_rsvn_completed(
+            results["no_rsvn_completed_b2b_cc"]
+        )
+
+    if "no_attempt_rate_key_shipper" in results:
+        final_outputs["no_attempt_rate_key_shipper_final"] = pivot_n0_attempt_rate(
+            results["no_attempt_rate_key_shipper"]
+        )
+    if "assign_inaccuracy" in results:
+        final_outputs["assign_inaccuracy_user_final"] = pivot_assignment_inaccuracy_user(
+            results["assign_inaccuracy"]
+        )
+        final_outputs["assign_inaccuracy_hub_final"] = pivot_assignment_inaccuracy_hub(
+            results["assign_inaccuracy"]
+        )
+
+    if "assign_streamline" in results:
+        final_outputs["assign_streamline_final"] = pivot_assignment_streamline(
+            results["assign_streamline"]
+        )
+
+    if "four_w_productivity" in results:
+        final_outputs["four_w_productivity_final"] = pivot_4w_productivity(
+            results["four_w_productivity"]
+        )
+
+    if "lnd" in results:
+        final_outputs["lnd_final"] = select_lnd(results["lnd"])
+
+    if "pst_itv_b2b_cc" in results:
+        final_outputs["pst_itv_b2b_cc_final"] = select_itv(results["pst_itv_b2b_cc"])
+
+    if "pst_itv_fsbd" in results:
+        final_outputs["pst_itv_fsbd_final"] = select_itv(results["pst_itv_fsbd"])
+
+    if "popa_validity_lazada" in results:
+        final_outputs["popa_validity_lazada_final"] = pivot_popa_validity(
+            results["popa_validity_lazada"]
+        )
+
+    if "popa_validity_aggregator" in results:
+        final_outputs["popa_validity_aggregator_final"] = pivot_popa_validity(
+            results["popa_validity_aggregator"]
+        )
+
+    if "popa_validity_fsbd_lazada" in results:
+        final_outputs["popa_validity_fsbd_lazada_final"] = pivot_popa_validity(
+            results["popa_validity_fsbd_lazada"]
+        )
+
+    print("\nSummary final output shapes:")
+    for key, df in final_outputs.items():
+        print(f"- {key}: {df.shape}")
+
+    print("\n[WRITE] Dump final outputs to Google Sheet...")
+
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=poh_b2b_cc_final,
+        start_cell="C4",
+        include_header=False,
+    )
+     write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=poh_fsbd_final,
+        start_cell="Q4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=poh_fsbd_final,
+        start_cell="AC4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=poh_fsbd_final,
+        start_cell="AC4",
+        include_header=False,
+    )
 
     print("\n=== FM DAY 2 DONE ===")
     return results
