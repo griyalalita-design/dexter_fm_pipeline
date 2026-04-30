@@ -600,6 +600,8 @@ def run():
         final_outputs["popa_validity_fsbd_lazada_final"] = pivot_popa_validity(
             results["popa_validity_fsbd_lazada"]
         )
+    if "rot" in results:
+        final_outputs["rot_final"] = pivot_rot(results["rot"])
 
     print("\nSummary final output shapes:")
     for key, df in final_outputs.items():
@@ -610,29 +612,57 @@ def run():
     write_sheet(
         GSHEET["tracker"]["sheet_id"],
         GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_b2b_cc_final,
+        df=poh_fsbd_final,
         start_cell="C4",
         include_header=False,
     )
      write_sheet(
         GSHEET["tracker"]["sheet_id"],
         GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_fsbd_final,
-        start_cell="Q4",
+        df=poh_b2b_cc_final,
+        start_cell="O4",
         include_header=False,
     )
     write_sheet(
         GSHEET["tracker"]["sheet_id"],
         GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_fsbd_final,
+        df=no_success_rate_shopee_laz_tt_bd_final,
         start_cell="AC4",
         include_header=False,
     )
     write_sheet(
         GSHEET["tracker"]["sheet_id"],
         GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_fsbd_final,
-        start_cell="AC4",
+        df=no_rsvn_completed_b2b_cc_final,
+        start_cell="AL4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=no_attempt_rate_key_shipper_final,
+        start_cell="AT4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=pst_itv_b2b_cc_final,
+        start_cell="BB4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=pst_itv_fsbd_final,
+        start_cell="BJ4",
+        include_header=False,
+    )
+    write_sheet(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["raw_data_otif"],
+        df=rot_final,
+        start_cell="BR4",
         include_header=False,
     )
 
