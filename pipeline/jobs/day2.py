@@ -583,9 +583,6 @@ def run():
         final_outputs["assign_inaccuracy_user_final"] = pivot_assignment_inaccuracy_user(
             results["assign_inaccuracy"]
         )
-        final_outputs["assign_inaccuracy_hub_final"] = pivot_assignment_inaccuracy_hub(
-            results["assign_inaccuracy"]
-        )
 
     if "assign_streamline" in results:
         final_outputs["assign_streamline_final"] = pivot_assignment_streamline(
@@ -698,6 +695,70 @@ def run():
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
             df=final_outputs["rot_final"],
             start_cell="BR4",
+            include_header=False,
+        )
+    if "lnd_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+            df=final_outputs["lnd_final"],
+            start_cell="A4",
+            include_header=False,
+        )
+    if "popa_validity_lazada_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+            df=final_outputs["popa_validity_lazada_final"],
+            start_cell="I4",
+            include_header=False,
+        )
+    if "popa_validity_aggregator_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+            df=final_outputs["popa_validity_aggregator_final"],
+            start_cell="R4",
+            include_header=False,
+        )
+    if "four_w_productivity_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_cost"],
+            df=final_outputs["four_w_productivity_final"],
+            start_cell="L4",
+            include_header=False,
+        )
+    if "assign_streamline_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_assign"],
+            df=final_outputs["assign_streamline_final"],
+            start_cell="A4",
+            include_header=False,
+        )
+    if "assign_inaccuracy_user_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_assign"],
+            df=final_outputs["assign_inaccuracy_user_final"],
+            start_cell="G4",
+            include_header=False,
+        )
+    if "popa_validity_fsbd_lazada_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_assign"],
+            df=final_outputs["popa_validity_fsbd_lazada_final"],
+            start_cell="M4",
+            include_header=False,
+        )
+    if "popa_validity_fsbd_lazada_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_assign"],
+            df=final_outputs["popa_validity_fsbd_lazada_final"],
+            start_cell="M4",
             include_header=False,
         )
 
