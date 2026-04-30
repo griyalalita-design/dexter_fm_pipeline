@@ -112,14 +112,17 @@ def build_shipper_lists():
     ]
 
     def extract_shipper_ids(mask):
-        return (
-            pd.to_numeric(df.loc[mask, "Shipper ID"], errors="coerce")
+        s = (
+            df.loc[mask, "Shipper ID"]
             .dropna()
-            .astype(int)
             .astype(str)
-            .drop_duplicates()
-            .tolist()
+            .str.strip()
+            .str.replace(r"\.0$", "", regex=True)
         )
+
+        s = s[(s != "") & (s.str.lower() != "nan")]
+
+        return s.drop_duplicates().tolist()
 
     b2b_cc_list = extract_shipper_ids(df["Type"].isin(b2b_cc_categories))
     fsbd_list = extract_shipper_ids(df["Type"].str.contains("fsbd|aggregator", case=False, na=False))
