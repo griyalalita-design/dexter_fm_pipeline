@@ -495,8 +495,8 @@ def run():
         # {"report_key": "popa_validity", "segment_key": "lazada"},
         # {"report_key": "popa_validity", "segment_key": "aggregator"},
         # {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
-        {"report_key": "assign_inaccuracy"},
-        {"report_key": "assign_streamline"},
+        # {"report_key": "assign_inaccuracy"},
+        # {"report_key": "assign_streamline"},
         {"report_key": "four_w_productivity"},
     ]
 
