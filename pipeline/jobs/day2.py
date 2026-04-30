@@ -606,68 +606,87 @@ def run():
     print("\nSummary final output shapes:")
     for key, df in final_outputs.items():
         print(f"- {key}: {df.shape}")
+        
 
-    print("\n[WRITE] Dump final outputs to Google Sheet...")
+     print("\n[WRITE] Dump final outputs to Google Sheet...")
 
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_fsbd_final,
-        start_cell="C4",
-        include_header=False,
-    )
-     write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=poh_b2b_cc_final,
-        start_cell="O4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=no_success_rate_shopee_laz_tt_bd_final,
-        start_cell="AC4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=no_rsvn_completed_b2b_cc_final,
-        start_cell="AL4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=no_attempt_rate_key_shipper_final,
-        start_cell="AT4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=pst_itv_b2b_cc_final,
-        start_cell="BB4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=pst_itv_fsbd_final,
-        start_cell="BJ4",
-        include_header=False,
-    )
-    write_sheet(
-        GSHEET["tracker"]["sheet_id"],
-        GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        df=rot_final,
-        start_cell="BR4",
-        include_header=False,
-    )
+    if "poh_fsbd_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["poh_fsbd_final"],
+            start_cell="C4",
+            include_header=False,
+        )
+
+    if "poh_b2b_cc_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["poh_b2b_cc_final"],
+            start_cell="O4",
+            include_header=False,
+        )
+
+    if "no_success_rate_shopee_laz_tt_bd_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["no_success_rate_shopee_laz_tt_bd_final"],
+            start_cell="AC4",
+            include_header=False,
+        )
+
+    if "no_rsvn_completed_b2b_cc_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["no_rsvn_completed_b2b_cc_final"],
+            start_cell="AL4",
+            include_header=False,
+        )
+
+    if "no_attempt_rate_key_shipper_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["no_attempt_rate_key_shipper_final"],
+            start_cell="AT4",
+            include_header=False,
+        )
+
+    if "pst_itv_b2b_cc_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["pst_itv_b2b_cc_final"],
+            start_cell="BB4",
+            include_header=False,
+        )
+
+    if "pst_itv_fsbd_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["pst_itv_fsbd_final"],
+            start_cell="BJ4",
+            include_header=False,
+        )
+
+    if "rot_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_otif"],
+            df=final_outputs["rot_final"],
+            start_cell="BR4",
+            include_header=False,
+        )
 
     print("\n=== FM DAY 2 DONE ===")
-    return results
+    return {
+        "raw":results,
+        "final": final_outputs,
+    }
 
 
 if __name__ == "__main__":
