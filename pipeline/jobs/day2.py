@@ -718,6 +718,22 @@ def run():
             start_cell="I4",
             include_header=False,
         )
+    if "popa_validity_lazada_final" in final_outputs:
+        write_sheet(
+            GSHEET["tracker"]["sheet_id"],
+            GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
+            df=final_outputs["popa_validity_lazada_final"],
+            start_cell="I4",
+            include_header=False,
+        )
+
+        # write_sheet(
+        #     GSHEET["sanggahan"]["sheet_id"],
+        #     GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
+        #     df=final_outputs["popa_validity_lazada_final"],
+        #     start_cell="A3",
+        #     include_header=False,
+        # )
     if "popa_validity_aggregator_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
