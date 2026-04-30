@@ -497,22 +497,22 @@ def run():
     results = {}
 
     fm_report_plan = [
-        {"report_key": "poh_b2b_cc", "runtime_patch_key": "poh_b2b_cc"},
-        {"report_key": "poh_fsbd", "runtime_patch_key": "poh_fsbd"},
-        {"report_key": "poh_tiktok", "runtime_patch_key": "poh_tiktok"},
-        {"report_key": "no_success_rate_shopee_laz_tt_bd"},
-        {"report_key": "no_rsvn_completed_b2b_cc"},
-        {"report_key": "no_attempt_rate_key_shipper"},
-        {"report_key": "pst_itv", "segment_key": "b2b_cc"},
-        {"report_key": "pst_itv", "segment_key": "fsbd"},
-        # {"report_key": "rot"},
-        # {"report_key": "lnd"},
-        # {"report_key": "popa_validity", "segment_key": "lazada"},
-        # {"report_key": "popa_validity", "segment_key": "aggregator"},
-        # {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
-        # {"report_key": "assign_inaccuracy"},
-        # {"report_key": "assign_streamline"},
-        # {"report_key": "four_w_productivity"},
+        # {"report_key": "poh_b2b_cc", "runtime_patch_key": "poh_b2b_cc"},
+        # {"report_key": "poh_fsbd", "runtime_patch_key": "poh_fsbd"},
+        # {"report_key": "poh_tiktok", "runtime_patch_key": "poh_tiktok"},
+        # {"report_key": "no_success_rate_shopee_laz_tt_bd"},
+        # {"report_key": "no_rsvn_completed_b2b_cc"},
+        # {"report_key": "no_attempt_rate_key_shipper"},
+        # {"report_key": "pst_itv", "segment_key": "b2b_cc"},
+        # {"report_key": "pst_itv", "segment_key": "fsbd"},
+        {"report_key": "rot"},
+        {"report_key": "lnd"},
+        {"report_key": "popa_validity", "segment_key": "lazada"},
+        {"report_key": "popa_validity", "segment_key": "aggregator"},
+        {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
+        {"report_key": "assign_inaccuracy"},
+        {"report_key": "assign_streamline"},
+        {"report_key": "four_w_productivity"},
     ]
 
     print("\n[FINAL] Pull FM Metabase reports...")
