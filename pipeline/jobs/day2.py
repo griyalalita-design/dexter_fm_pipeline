@@ -507,6 +507,7 @@ def run():
         # {"report_key": "pst_itv", "segment_key": "fsbd"},
         {"report_key": "rot"},
         {"report_key": "lnd"},
+        {"report_key": "lnd_b2b_cc"},
         # {"report_key": "popa_validity", "segment_key": "lazada"},
         # {"report_key": "popa_validity", "segment_key": "aggregator"},
         # {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
@@ -596,6 +597,9 @@ def run():
 
     if "lnd" in results:
         final_outputs["lnd_final"] = select_lnd(results["lnd"])
+        
+    if "lnd_b2b_cc" in results:
+        final_outputs["lnd_b2b_cc_final"] = select_lnd(results["lnd_b2b_cc"])
 
     if "pst_itv_b2b_cc" in results:
         final_outputs["pst_itv_b2b_cc_final"] = select_itv(results["pst_itv_b2b_cc"])
@@ -697,7 +701,8 @@ def run():
             start_cell="BR4",
             include_header=False,
         )
-    if "lnd_final" in final_outputs:
+
+    if "lnd_b2b_cc_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
@@ -753,12 +758,12 @@ def run():
             start_cell="M4",
             include_header=False,
         )
-    if "popa_validity_fsbd_lazada_final" in final_outputs:
+    if "lnd_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_assign"],
-            df=final_outputs["popa_validity_fsbd_lazada_final"],
-            start_cell="M4",
+            df=final_outputs["lnd_final"],
+            start_cell="V4",
             include_header=False,
         )
 
