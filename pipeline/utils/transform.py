@@ -277,6 +277,67 @@ def pivot_sr_rts(df: pd.DataFrame) -> pd.DataFrame:
         )
     )
 
+def pivot_4w_productivity(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df.copy()
+
+    cols = [
+        "hub_region",
+        "hub_name",
+        "attempt_date",
+        "total_rider_hit_2w",
+        "W2_Hit_WP_Success_Target",
+        "total_rider",
+        "total_rsvn_4w",
+        "total_driver",
+        "average_4W_WP_Success",
+    ]
+    work = df[cols].copy()
+
+    out = (
+        work.groupby(["hub_region", "hub_name", "attempt_date"], as_index=False)
+        .agg(
+            total_hit_2w=("total_rider_hit_2w", "sum"),
+            rider_hit_rate=("W2_Hit_WP_Success_Target", "mean"),
+            total_rider=("total_rider", "sum"),
+            total_rsvn_4w=("total_rsvn_4w", "sum"),
+            total_driver=("total_driver", "sum"),
+            avg_4w_wp_success=("average_4W_WP_Success", "mean"),
+        )
+    )
+
+    if out["rider_hit_rate"].isna().all():
+        out["rider_hit_rate"] = np.where(
+            out["total_rider"] > 0,
+            out["total_hit_2w"] / out["total_rider"],
+            0,
+        )
+
+    return out.rename(
+        columns={
+            "hub_region": "Region",
+            "hub_name": "Hub",
+            "attempt_date": "Attempt Datetime",
+            "total_hit_2w": "Total Hit 2W",
+            "rider_hit_rate": "%Rider Hit",
+            "total_rider": "Total Rider",
+            "total_rsvn_4w": "Total RSVN 4W",
+            "total_driver": "Total Driver",
+            "avg_4w_wp_success": "Avg 4W WP Success",
+        }
+    )[
+        [
+            "Region",
+            "Hub",
+            "Attempt Datetime",
+            "Total Hit 2W",
+            "%Rider Hit",
+            "Total Rider",
+            "Total RSVN 4W",
+            "Total Driver",
+            "Avg 4W WP Success",
+        ]
+    ]
 
 def select_lnd(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
