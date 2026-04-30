@@ -606,9 +606,8 @@ def run():
     print("\nSummary final output shapes:")
     for key, df in final_outputs.items():
         print(f"- {key}: {df.shape}")
-        
 
-     print("\n[WRITE] Dump final outputs to Google Sheet...")
+    print("\n[WRITE] Dump final outputs to Google Sheet...")
 
     if "poh_fsbd_final" in final_outputs:
         write_sheet(
@@ -684,7 +683,7 @@ def run():
 
     print("\n=== FM DAY 2 DONE ===")
     return {
-        "raw":results,
+        "raw": results,
         "final": final_outputs,
     }
 
