@@ -543,7 +543,7 @@ def run():
         final_outputs["poh_fsbd_final"] = pivot_poh(results["poh_fsbd"])
 
     if "poh_tiktok" in results:
-        final_outputs["poh_tiktok_final"= pivot_poh(results["poh_tiktok"])
+        final_outputs["poh_tiktok_final"]= pivot_poh(results["poh_tiktok"])
 
     if "no_success_rate_shopee_laz_tt_bd" in results:
         final_outputs["no_success_rate_shopee_laz_tt_bd_final"] = pivot_sr_rts(
