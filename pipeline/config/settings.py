@@ -429,7 +429,7 @@ METABASE_CONFIG = {
         },
 
         "assign_inaccuracy": {
-            "url": "https://metabase.ninjavan.co/question/113533/query/json",
+            "url": "https://metabase.ninjavan.co/api/card/113533/query/json",
             "report_type": "fm",
             "common_params_template": [
                 {"id": "207c1942-61d1-488d-8fea-0956e6f1f4fc", "type": "string/=", "value": "driver_list", "target": ["dimension", ["template-tag", "route_driver_type"]]},
@@ -445,7 +445,7 @@ METABASE_CONFIG = {
         },
 
         "assign_streamline": {
-            "url": "https://metabase.ninjavan.co/question/99742/query/json",
+            "url": "https://metabase.ninjavan.co/api/card/99742/query/json",
             "report_type": "fm",
             "common_params_template": [
                 {"id": "177476c2-e00a-40d1-b133-a52d21917162", "type": "date/single", "value": "start_date", "target": ["variable", ["template-tag", "start_ready_datetime"]]},
@@ -492,7 +492,7 @@ METABASE_CONFIG = {
         },
 
         "four_w_productivity": {
-            "url": "https://metabase.ninjavan.co/question/99900/query/json",
+            "url": "https://metabase.ninjavan.co/api/card/99900/query/json",
             "report_type": "fm",
             "common_params_template": [
                 {"id": "0ddfdd63-4858-404f-9391-4c0a6f3c77ea", "type": "number/=", "value": [1], "target": ["variable", ["template-tag", "sph_flag"]]},
