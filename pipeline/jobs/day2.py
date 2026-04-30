@@ -55,6 +55,12 @@ def normalize_scalar(value):
     except ValueError:
         return text
 
+def sanitize_for_sheet(df: pd.DataFrame) -> pd.DataFrame:
+    cleaned = df.copy()
+    cleaned = cleaned.replace([float("inf"), float("-inf")], pd.NA)
+    cleaned = cleaned.where(pd.notna(cleaned), "")
+    return cleaned
+
 
 def render_params(param_templates, runtime_values):
     rendered = []
@@ -746,7 +752,7 @@ def run():
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_cost"],
-            df=final_outputs["four_w_productivity_final"],
+            df=sanitize_for_sheet(final_outputs["four_w_productivity_final"]),
             start_cell="L4",
             include_header=False,
         )
