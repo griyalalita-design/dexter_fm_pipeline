@@ -503,8 +503,8 @@ def run():
         {"report_key": "no_success_rate_shopee_laz_tt_bd"},
         {"report_key": "no_rsvn_completed_b2b_cc"},
         {"report_key": "no_attempt_rate_key_shipper"},
-        # {"report_key": "pst_itv", "segment_key": "b2b_cc"},
-        # {"report_key": "pst_itv", "segment_key": "fsbd"},
+        {"report_key": "pst_itv", "segment_key": "b2b_cc"},
+        {"report_key": "pst_itv", "segment_key": "fsbd"},
         # {"report_key": "rot"},
         # {"report_key": "lnd"},
         # {"report_key": "popa_validity", "segment_key": "lazada"},
@@ -553,11 +553,17 @@ def run():
     if "poh_b2b_cc" in results:
         final_outputs["poh_b2b_cc_final"] = pivot_poh(results["poh_b2b_cc"])
 
+    poh_fsbd_tiktok_frames = []
+
     if "poh_fsbd" in results:
-        final_outputs["poh_fsbd_final"] = pivot_poh(results["poh_fsbd"])
+        poh_fsbd_tiktok_frames.append(results["poh_fsbd"])
 
     if "poh_tiktok" in results:
-        final_outputs["poh_tiktok_final"]= pivot_poh(results["poh_tiktok"])
+        poh_fsbd_tiktok_frames.append(results["poh_tiktok"])
+
+    if poh_fsbd_tiktok_frames:
+        results["poh_fsbd_tiktok"] = pd.concat(poh_fsbd_tiktok_frames, ignore_index=True)
+        final_outputs["poh_fsbd_tiktok_final"] = pivot_poh(results["poh_fsbd_tiktok"])
 
     if "no_success_rate_shopee_laz_tt_bd" in results:
         final_outputs["no_success_rate_shopee_laz_tt_bd_final"] = pivot_sr_rts(
@@ -623,11 +629,11 @@ def run():
 
     print("\n[WRITE] Dump final outputs to Google Sheet...")
 
-    if "poh_fsbd_final" in final_outputs:
+    if "poh_fsbd_tiktok_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
-            df=final_outputs["poh_fsbd_final"],
+            df=final_outputs["poh_fsbd_tiktok_final"],
             start_cell="C4",
             include_header=False,
         )
@@ -637,7 +643,7 @@ def run():
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
             df=final_outputs["poh_b2b_cc_final"],
-            start_cell="O4",
+            start_cell="Q4",
             include_header=False,
         )
 
