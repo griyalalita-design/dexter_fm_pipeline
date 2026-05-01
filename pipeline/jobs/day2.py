@@ -503,22 +503,22 @@ def run():
     results = {}
 
     fm_report_plan = [
-        # {"report_key": "poh_b2b_cc", "runtime_patch_key": "poh_b2b_cc"},
-        # {"report_key": "poh_fsbd", "runtime_patch_key": "poh_fsbd"},
-        # {"report_key": "poh_tiktok", "runtime_patch_key": "poh_tiktok"},
-        # {"report_key": "no_success_rate_shopee_laz_tt_bd"},
-        # {"report_key": "no_rsvn_completed_b2b_cc"},
-        # {"report_key": "no_attempt_rate_key_shipper"},
-        # {"report_key": "pst_itv", "segment_key": "b2b_cc"},
-        # {"report_key": "pst_itv", "segment_key": "fsbd"},
+        {"report_key": "poh_b2b_cc", "runtime_patch_key": "poh_b2b_cc"},
+        {"report_key": "poh_fsbd", "runtime_patch_key": "poh_fsbd"},
+        {"report_key": "poh_tiktok", "runtime_patch_key": "poh_tiktok"},
+        {"report_key": "no_success_rate_shopee_laz_tt_bd"},
+        {"report_key": "no_rsvn_completed_b2b_cc"},
+        {"report_key": "no_attempt_rate_key_shipper"},
+        {"report_key": "pst_itv", "segment_key": "b2b_cc"},
+        {"report_key": "pst_itv", "segment_key": "fsbd"},
         {"report_key": "rot"},
         {"report_key": "lnd"},
         {"report_key": "lnd_b2b_cc"},
-        # {"report_key": "popa_validity", "segment_key": "lazada"},
-        # {"report_key": "popa_validity", "segment_key": "aggregator"},
-        # {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
+        {"report_key": "popa_validity", "segment_key": "lazada"},
+        {"report_key": "popa_validity", "segment_key": "aggregator"},
+        {"report_key": "popa_validity", "segment_key": "fsbd_lazada"},
         {"report_key": "assign_inaccuracy"},
-        # {"report_key": "assign_streamline"},
+        {"report_key": "assign_streamline"},
         {"report_key": "four_w_productivity"},
     ]
 
@@ -644,6 +644,13 @@ def run():
             start_cell="C4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_keyshipper"],
+            df=final_outputs["poh_fsbd_tiktok_final"],
+            start_cell="A3",
+            include_header=False,
+        )
 
     if "poh_b2b_cc_final" in final_outputs:
         write_sheet(
@@ -651,6 +658,13 @@ def run():
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
             df=final_outputs["poh_b2b_cc_final"],
             start_cell="Q4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["pu_to_poh_msh_b2b_all_b2c_cold"],
+            df=final_outputs["poh_b2b_cc_final"],
+            start_cell="A3",
             include_header=False,
         )
 
@@ -662,6 +676,13 @@ def run():
             start_cell="AC4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["no_success_rate_rts_shopee_laz_other"],
+            df=final_outputs["no_success_rate_shopee_laz_tt_bd_final"],
+            start_cell="A3",
+            include_header=False,
+        )
 
     if "no_rsvn_completed_b2b_cc_final" in final_outputs:
         write_sheet(
@@ -669,6 +690,13 @@ def run():
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
             df=final_outputs["no_rsvn_completed_b2b_cc_final"],
             start_cell="AL4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["no_rsvn_completed_b2b_all_b2c_cold"],
+            df=final_outputs["no_rsvn_completed_b2b_cc_final"],
+            start_cell="A3",
             include_header=False,
         )
 
@@ -680,6 +708,13 @@ def run():
             start_cell="AT4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["no_attempt_rate_keyshipper"],
+            df=final_outputs["no_attempt_rate_key_shipper_final"],
+            start_cell="A3",
+            include_header=False,
+        )
 
     if "pst_itv_b2b_cc_final" in final_outputs:
         write_sheet(
@@ -687,6 +722,13 @@ def run():
             GSHEET["tracker"]["tabs"]["raw_data_otif"],
             df=final_outputs["pst_itv_b2b_cc_final"],
             start_cell="BB4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["pst_itv_b2b_all_b2c_cold"],
+            df=final_outputs["pst_itv_b2b_cc_final"],
+            start_cell="A3",
             include_header=False,
         )
 
@@ -698,6 +740,13 @@ def run():
             start_cell="BJ4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["pst_itv_keyshipper"],
+            df=final_outputs["pst_itv_fsbd_final"],
+            start_cell="A3",
+            include_header=False,
+        )
 
     if "rot_final" in final_outputs:
         write_sheet(
@@ -707,21 +756,27 @@ def run():
             start_cell="BR4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["rot_b2b_all_b2c_cold"],
+            df=final_outputs["rot_final"],
+            start_cell="A3",
+            include_header=False,
+        )
 
     if "lnd_b2b_cc_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
-            df=final_outputs["lnd_final"],
+            df=final_outputs["lnd_b2b_cc_final"],
             start_cell="A4",
             include_header=False,
         )
-    if "popa_validity_lazada_final" in final_outputs:
         write_sheet(
-            GSHEET["tracker"]["sheet_id"],
-            GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
-            df=final_outputs["popa_validity_lazada_final"],
-            start_cell="I4",
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["lnd_rate_b2b_all_b2c_cold"],
+            df=final_outputs["lnd_b2b_cc_final"],
+            start_cell="A3",
             include_header=False,
         )
     if "popa_validity_lazada_final" in final_outputs:
@@ -730,16 +785,16 @@ def run():
             GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
             df=final_outputs["popa_validity_lazada_final"],
             start_cell="I4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
+            df=final_outputs["popa_validity_lazada_final"],
+            start_cell="A3",
             include_header=False,
         )
 
-        # write_sheet(
-        #     GSHEET["sanggahan"]["sheet_id"],
-        #     GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
-        #     df=final_outputs["popa_validity_lazada_final"],
-        #     start_cell="A3",
-        #     include_header=False,
-        # )
     if "popa_validity_aggregator_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
@@ -748,12 +803,26 @@ def run():
             start_cell="R4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["popa_validity_aggregator"],
+            df=final_outputs["popa_validity_aggregator_final"],
+            start_cell="A3",
+            include_header=False,
+        )
     if "four_w_productivity_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_cost"],
             df=sanitize_for_sheet(final_outputs["four_w_productivity_final"]),
-            start_cell="L4",
+            start_cell="L3",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["4w_productivity"],
+            df=final_outputs["four_w_productivity_final"],
+            start_cell="A3",
             include_header=False,
         )
     if "assign_streamline_final" in final_outputs:
@@ -764,12 +833,26 @@ def run():
             start_cell="A4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["assignment_stream"],
+            df=final_outputs["assign_streamline_final"],
+            start_cell="A3",
+            include_header=False,
+        )
     if "assign_inaccuracy_user_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_assign"],
             df=final_outputs["assign_inaccuracy_user_final"],
             start_cell="G4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["assignment_inaccuracy"],
+            df=final_outputs["assign_inaccuracy_user_final"],
+            start_cell="A3",
             include_header=False,
         )
     if "popa_validity_fsbd_lazada_final" in final_outputs:
@@ -780,12 +863,26 @@ def run():
             start_cell="M4",
             include_header=False,
         )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["popa_validity_fsbd_lazada"],
+            df=final_outputs["popa_validity_fsbd_lazada_final"],
+            start_cell="A3",
+            include_header=False,
+        )
     if "lnd_final" in final_outputs:
         write_sheet(
             GSHEET["tracker"]["sheet_id"],
             GSHEET["tracker"]["tabs"]["raw_data_assign"],
             df=final_outputs["lnd_final"],
             start_cell="V4",
+            include_header=False,
+        )
+        write_sheet(
+            GSHEET["sanggahan"]["sheet_id"],
+            GSHEET["sanggahan"]["tabs"]["lnd_rate"],
+            df=final_outputs["lnd_final"],
+            start_cell="A3",
             include_header=False,
         )
 
