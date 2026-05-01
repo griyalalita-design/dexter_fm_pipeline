@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from utils.metabase import tarik_metabase, get_token
-from utils.gsheet import read_sheet
 from config.settings import METABASE_CONFIG, GSHEET
 from utils.gsheet import read_sheet, write_sheet
 from utils.transform import (
@@ -821,7 +820,7 @@ def run():
         write_sheet(
             GSHEET["sanggahan"]["sheet_id"],
             GSHEET["sanggahan"]["tabs"]["4w_productivity"],
-            df=final_outputs["four_w_productivity_final"],
+            df=sanitize_for_sheet(final_outputs["four_w_productivity_final"]),
             start_cell="A3",
             include_header=False,
         )
