@@ -222,7 +222,8 @@ def pivot_popa_validity(df: pd.DataFrame) -> pd.DataFrame:
         .agg(
             total_invalid=("final_validity_remarks", lambda x: (x == "Invalid").sum()),
             total_valid=("final_validity_remarks", lambda x: (x == "Valid").sum()),
-            total_transaction=("transaction_id", "count"),
+            total_validation=("final_validity_remarks", lambda x: x.isin(["Valid", "Invalid"]).sum()),
+            # total_transaction=("transaction_id", "count"),
         )
     )
 
