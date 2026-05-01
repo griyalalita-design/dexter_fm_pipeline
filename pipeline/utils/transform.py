@@ -169,7 +169,7 @@ def pivot_rot(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df.copy()
 
-    work = df[["rsvn_ready_date", "hub_name", "rsvn_ontime", "rsvn_ready"]].copy()
+    work = df[["rsvn_ready_date", "hub_name", "rsvn_ready","rsvn_ontime"]].copy()
     return (
         work.groupby(["rsvn_ready_date", "hub_name"], as_index=False)
         .agg(
@@ -212,44 +212,31 @@ def pivot_popa_validity(df: pd.DataFrame) -> pd.DataFrame:
             "attempt_date_aggr",
             "hub_region",
             "hub_name",
-            "validation_remarks_hit_n1",
             "final_validity_remarks",
             "transaction_id",
         ]
     ].copy()
+
     out = (
         work.groupby(["attempt_date_aggr", "hub_region", "hub_name"], as_index=False)
         .agg(
-            total_hit_n1=("validation_remarks_hit_n1", lambda x: (x == "Hit").sum()),
-            total_valid=("final_validity_remarks", lambda x: (x == "Valid").sum()),
             total_invalid=("final_validity_remarks", lambda x: (x == "Invalid").sum()),
-            total_validation=("final_validity_remarks", lambda x: x.isin(["Valid", "Invalid"]).sum()),
-            total_transactions=("transaction_id", "count"),
+            total_valid=("final_validity_remarks", lambda x: (x == "Valid").sum()),
+            total_transaction=("transaction_id", "count"),
         )
     )
-    out["hit_n1_valid_rate"] = np.where(
-        out["total_transactions"] > 0,
-        out["total_hit_n1"] / out["total_transactions"],
-        0,
-    )
-    out["validity_rate"] = np.where(
-        out["total_validation"] > 0,
-        out["total_valid"] / out["total_validation"],
-        0,
-    )
+
     return out[
         [
             "attempt_date_aggr",
             "hub_region",
             "hub_name",
-            "total_hit_n1",
-            "hit_n1_valid_rate",
-            "total_valid",
             "total_invalid",
-            "validity_rate",
-            "total_transactions",
+            "total_valid",
+            "total_transaction",
         ]
     ]
+
 
 
 def pivot_sr_rts(df: pd.DataFrame) -> pd.DataFrame:
@@ -348,7 +335,7 @@ def select_lnd(df: pd.DataFrame) -> pd.DataFrame:
 def select_itv(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df.copy()
-    return df[["aggr", "pickup_hub_name", "pickup_hub_region", "pickup_vol", "hit_n0_itv", "n0_itv_rate"]].copy()
+    return df[["aggr", "pickup_hub_name", "pickup_vol", "hit_n0_itv"]].copy()
 
 
 def apply_reviewed_sanggahan(tracker_df: pd.DataFrame, sanggahan_df: pd.DataFrame) -> pd.DataFrame:
