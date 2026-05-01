@@ -169,7 +169,7 @@ def pivot_rot(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df.copy()
 
-    work = df[["rsvn_ready_date", "hub_name", "rsvn_ready","rsvn_ontime"]].copy()
+    work = df[["rsvn_ready_date", "hub_name", "rsvn_ontime","rsvn_ready"]].copy()
     return (
         work.groupby(["rsvn_ready_date", "hub_name"], as_index=False)
         .agg(
