@@ -234,7 +234,7 @@ def pivot_popa_validity(df: pd.DataFrame) -> pd.DataFrame:
             "hub_name",
             "total_invalid",
             "total_valid",
-            "total_transaction",
+            "total_validation",
         ]
     ]
 
