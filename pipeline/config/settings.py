@@ -20,7 +20,7 @@ GSHEET = {
             "raw_data_cost": "Raw Data [Cost]",
             "raw_data_assign": "Raw Data [Assignment & Korlap]",
             "staff_list": "Staff List",
-            "recipients":"Copy of recipients",
+            "recipients":"recipients",
             "master_tracker_by_hub": "Master Tracker by Hub",
         },
         # Range yang di-clear saat Day 1 (sesuaikan)
