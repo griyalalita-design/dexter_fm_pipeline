@@ -161,7 +161,7 @@ GSHEET = {
         }
     },
 
-    # Gsheet Converter (data ke rupiah)
+    # Gsheet Converter (data ke rupiah) sama ambil data staff list
     "converter": {
         "url": "https://docs.google.com/spreadsheets/d/1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c/edit?gid=1216663898#gid=1216663898",
         "sheet_id": "1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c",
@@ -179,6 +179,8 @@ GSHEET = {
         },
         "token_cell": "B2",  # cell tempat token Metabase
     },
+
+
 }
 
 
