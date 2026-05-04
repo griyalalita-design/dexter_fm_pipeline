@@ -20,7 +20,7 @@ SMTP_PORT = 465
 # hardcode links
 METABASE_URL = "https://docs.google.com/spreadsheets/d/1URg6lx6L8jNqxfOL0-k3VSkFECN2hnXOOwCD7OnlvJo/edit?gid=1582915729#gid=1582915729"
 ARCHIVES_URL = "https://drive.google.com/drive/folders/1kqFrpkWjI1DxyIjaua4N8MXx4dJVgbQr"
-PPT_URL = "https://docs.google.com/presentation/d/1ubRIFrPy4pfV00V-qYQlq-0aaOvlCN7MO4Bo-rYX2GE/edit?slide=id.g142cc6d9960_0_0#slide=id.g142cc6d9960_0_0"
+PPT_URL = "https://docs.google.com/presentation/d/1M6eh7UkxjwJ-kXSSNbSZn0Erv8iApWu28xgctCCPNWU/edit?slide=id.g3530d417fc4_0_85#slide=id.g3530d417fc4_0_85"
 
 
 def get_previous_month_label() -> str:
