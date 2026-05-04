@@ -24,7 +24,7 @@ def run():
         source_range="Q3:X",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
-        dest_start_cell="Q4",
+        dest_start_cell="O4",
     )
     print("===== PU to PoH MSH B2B All & B2C Cold -> Tracker Done =====")
 
@@ -65,7 +65,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["pst_itv_b2b_all_b2c_cold"],
-        source_range="TODO_SOURCE_RANGE",
+        source_range="M3:P",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
         dest_start_cell="BB4",
@@ -99,7 +99,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_lazada"],
-        source_range="Q3:V",
+        source_range="P3:U",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
         dest_start_cell="I4",
@@ -110,7 +110,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_aggregator"],
-        source_range="Q3:V",
+        source_range="P3:U",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
         dest_start_cell="R4",
@@ -121,7 +121,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["popa_validity_fsbd_lazada"],
-        source_range="Q3:V",
+        source_range="P3:U",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
         dest_start_cell="M4",
@@ -132,7 +132,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate_b2b_all_b2c_cold"],
-        source_range="N3:R",
+        source_range="N3:Q",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_inter_cost"],
         dest_start_cell="A4",
@@ -143,7 +143,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["lnd_rate"],
-        source_range="N3:R",
+        source_range="N3:Q",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
         dest_start_cell="V4",
@@ -154,7 +154,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["4w_productivity"],
-        source_range="W3:E",
+        source_range="W3:AE",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_cost"],
         dest_start_cell="L3",
@@ -184,15 +184,15 @@ def run():
     print("===== Assignment Stream -> Tracker Done =====")
 
     # EKI no hit -> Tracker
-    copy_range(
-        source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
-        source_tab=GSHEET["sanggahan"]["tabs"]["eki_no_hit"],
-        source_range="J3:K",
-        dest_sheet_id=GSHEET["tracker"]["sheet_id"],
-        dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
-        dest_start_cell="AE4",
-    )
-    print("===== EKI no hit -> Tracker Done =====")
+    # copy_range(
+    #     source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
+    #     source_tab=GSHEET["sanggahan"]["tabs"]["eki_no_hit"],
+    #     source_range="J3:K",
+    #     dest_sheet_id=GSHEET["tracker"]["sheet_id"],
+    #     dest_tab=GSHEET["tracker"]["tabs"]["raw_data_assign"],
+    #     dest_start_cell="AE4",
+    # )
+    # print("===== EKI no hit -> Tracker Done =====")
 
     # Staff List -> Tracker
     copy_range(
