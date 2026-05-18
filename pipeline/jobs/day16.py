@@ -39,7 +39,7 @@ def run():
     #     (df_master[col_f].astype(str).str.strip().str.lower() == "jawo")
     # ].copy()
 
-    print(f"After filter: {df_filtered.shape}")
+    # print(f"After filter: {df_filtered.shape}")
 
     # 🔥 Write tanpa header ke A7
     write_sheet(
@@ -67,7 +67,7 @@ def run():
     #     (df_master2[col_a].astype(str).str.strip().str.lower() == "eligible")
     # ].copy()
 
-    print(f"After filter: {df_filtered2.shape}")
+    # print(f"After filter: {df_filtered2.shape}")
 
     # 🔥 Write tanpa header ke A7
     write_sheet(
