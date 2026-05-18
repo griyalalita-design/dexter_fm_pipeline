@@ -22,7 +22,7 @@ GSHEET = {
             "staff_list": "Staff List",
             "recipients":"recipients",
             "master_tracker_by_hub": "Master Tracker by Hub",
-            "staff_assigment_tracker": "Staff Assignment Tracker",
+            "staff_assignment_tracker": "Staff Assignment Tracker",
             "cluster_performance": "Cluster Performance",
         },
         # Range yang di-clear saat Day 1 (sesuaikan)
