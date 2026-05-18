@@ -61,6 +61,31 @@ def run():
         dest_tab=GSHEET["converter"]["tabs"]["staff_list"],
         dest_start_cell="A2",
     )
+    copy_range(
+        source_sheet_id=GSHEET["tracker"]["sheet_id"],
+        source_tab=GSHEET["tracker"]["tabs"]["staff_assignment_tracker"],
+        source_range="A3:I",
+        dest_sheet_id=GSHEET["converter"]["sheet_id"],
+        dest_tab=GSHEET["converter"]["tabs"]["staff_assignment_tracker"],
+        dest_start_cell="A3",
+    )
+    copy_range(
+        source_sheet_id=GSHEET["tracker"]["sheet_id"],
+        source_tab=GSHEET["tracker"]["tabs"]["cluster_performance"],
+        source_range="A3:AH27",
+        dest_sheet_id=GSHEET["converter"]["sheet_id"],
+        dest_tab=GSHEET["converter"]["tabs"]["cluster_performance"],
+        dest_start_cell="A3",
+    )
+    copy_range(
+        source_sheet_id=GSHEET["tracker"]["sheet_id"],
+        source_tab=GSHEET["tracker"]["tabs"]["cluster_performance"],
+        source_range="A30:AH",
+        dest_sheet_id=GSHEET["converter"]["sheet_id"],
+        dest_tab=GSHEET["converter"]["tabs"]["cluster_performance"],
+        dest_start_cell="A30",
+    )
+    [
 
     print("===== Copy staff list ke converter done =====")
 
