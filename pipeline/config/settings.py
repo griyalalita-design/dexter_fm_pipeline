@@ -169,7 +169,9 @@ GSHEET = {
         "sheet_id": "1zrmueBzc7QTOXkQ1rFgX6RnDclqFGlBmAcIPthc4t0c",
         "tabs": {
             "master_tracker_by_hub": "Master Tracker by Hub",      # sesuaikan nama tab
-            "staff_list":   "Staff List",  # sesuaikan nama tab
+            "staff_list":   "Staff List",
+            "staff_assignment_tracker":   "Staff Assignment Tracker",
+            "cluster_performance":   "Cluster Performance",# sesuaikan nama tab
         }
     },
 
