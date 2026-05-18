@@ -50,6 +50,34 @@ def run():
         include_header=False,
     )
 
+        # 🔥 Read range A6:AQ (header di A6)
+    df_master2 = read_range_as_df(
+        GSHEET["tracker"]["sheet_id"],
+        GSHEET["tracker"]["tabs"]["cluster_performance"],
+        "A30:AH"
+    )
+
+    print(f"Before filter: {df_master2.shape}")
+    print("Columns:", df_master2.columns.tolist())
+
+    # Kolom F = index 5, G = index 6
+    col_a = df_master2.columns[0]
+
+    df_filtered2 = df_master2[
+        (df_master2[col_a].astype(str).str.strip().str.lower() == "eligible")
+    ].copy()
+
+    print(f"After filter: {df_filtered2.shape}")
+
+    # 🔥 Write tanpa header ke A7
+    write_sheet(
+        spreadsheet_id=GSHEET["converter"]["sheet_id"],
+        sheet_name=GSHEET["converter"]["tabs"]["cluster_performance"],
+        df=df_filtered2,
+        start_cell="A30",
+        include_header=False,
+    )
+
     print("===== Filter + input summary tracker ke converter done =====")
 
     # Copy staff list tetap pakai copy_range
@@ -77,14 +105,7 @@ def run():
         dest_tab=GSHEET["converter"]["tabs"]["cluster_performance"],
         dest_start_cell="A3",
     )
-    copy_range(
-        source_sheet_id=GSHEET["tracker"]["sheet_id"],
-        source_tab=GSHEET["tracker"]["tabs"]["cluster_performance"],
-        source_range="A30:AH",
-        dest_sheet_id=GSHEET["converter"]["sheet_id"],
-        dest_tab=GSHEET["converter"]["tabs"]["cluster_performance"],
-        dest_start_cell="A30",
-    )
+
     [
 
     print("===== Copy staff list ke converter done =====")
