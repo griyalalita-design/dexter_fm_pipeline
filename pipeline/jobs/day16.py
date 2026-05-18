@@ -55,7 +55,7 @@ def run():
     # Copy staff list tetap pakai copy_range
     copy_range(
         source_sheet_id=GSHEET["tracker"]["sheet_id"],
-        source_tab=GSHEET["tracker"]["tabs"]["staff_lis"],
+        source_tab=GSHEET["tracker"]["tabs"]["staff_list"],
         source_range="A2:H",
         dest_sheet_id=GSHEET["converter"]["sheet_id"],
         dest_tab=GSHEET["converter"]["tabs"]["staff_list"],
