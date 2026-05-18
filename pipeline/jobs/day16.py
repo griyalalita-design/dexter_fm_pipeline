@@ -31,13 +31,13 @@ def run():
     print("Columns:", df_master.columns.tolist())
 
     # Kolom F = index 5, G = index 6
-    col_f = df_master.columns[5]
-    col_g = df_master.columns[6]
+    # col_f = df_master.columns[5]
+    # col_g = df_master.columns[6]
 
-    df_filtered = df_master[
-        (df_master[col_g].astype(str).str.strip().str.lower() == "eligible") &
-        (df_master[col_f].astype(str).str.strip().str.lower() == "jawo")
-    ].copy()
+    # df_filtered = df_master[
+    #     (df_master[col_g].astype(str).str.strip().str.lower() == "eligible") &
+    #     (df_master[col_f].astype(str).str.strip().str.lower() == "jawo")
+    # ].copy()
 
     print(f"After filter: {df_filtered.shape}")
 
@@ -45,7 +45,7 @@ def run():
     write_sheet(
         spreadsheet_id=GSHEET["converter"]["sheet_id"],
         sheet_name=GSHEET["converter"]["tabs"]["master_tracker_by_hub"],
-        df=df_filtered,
+        df=df_master,
         start_cell="A4",
         include_header=False,
     )
@@ -61,11 +61,11 @@ def run():
     print("Columns:", df_master2.columns.tolist())
 
     # Kolom F = index 5, G = index 6
-    col_a = df_master2.columns[0]
+    # col_a = df_master2.columns[0]
 
-    df_filtered2 = df_master2[
-        (df_master2[col_a].astype(str).str.strip().str.lower() == "eligible")
-    ].copy()
+    # df_filtered2 = df_master2[
+    #     (df_master2[col_a].astype(str).str.strip().str.lower() == "eligible")
+    # ].copy()
 
     print(f"After filter: {df_filtered2.shape}")
 
@@ -73,7 +73,7 @@ def run():
     write_sheet(
         spreadsheet_id=GSHEET["converter"]["sheet_id"],
         sheet_name=GSHEET["converter"]["tabs"]["cluster_performance"],
-        df=df_filtered2,
+        df=df_master2,
         start_cell="A30",
         include_header=False,
     )
