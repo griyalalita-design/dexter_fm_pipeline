@@ -43,7 +43,7 @@ def run():
     copy_range(
         source_sheet_id=GSHEET["sanggahan"]["sheet_id"],
         source_tab=GSHEET["sanggahan"]["tabs"]["no_rsvn_completed_b2b_all_b2c_cold"],
-        source_range="M3:P,
+        source_range="M3:P",
         dest_sheet_id=GSHEET["tracker"]["sheet_id"],
         dest_tab=GSHEET["tracker"]["tabs"]["raw_data_otif"],
         dest_start_cell="AL4",
