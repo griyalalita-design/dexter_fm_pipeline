@@ -106,8 +106,6 @@ def run():
         dest_start_cell="A3",
     )
 
-    [
-
     print("===== Copy staff list ke converter done =====")
 
 
